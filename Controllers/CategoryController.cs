@@ -32,6 +32,7 @@ private readonly ApplicationDbContext _db;
                 if(ModelState.IsValid) {
                     _db.Categories.Add(obj);
                     _db.SaveChanges();
+                    TempData["Success"] = "Kategori skapad.";
                     return RedirectToAction("Index");
                 }
                
@@ -57,6 +58,8 @@ private readonly ApplicationDbContext _db;
                 if(ModelState.IsValid) {
                     _db.Categories.Update(obj);
                     _db.SaveChanges();
+                    TempData["Success"] = "Kategori uppdaterad.";
+
                     return RedirectToAction("Index");
                 }
                
@@ -84,6 +87,7 @@ private readonly ApplicationDbContext _db;
             }
             _db.Categories.Remove(obj);
             _db.SaveChanges();
+            TempData["Success"] = "Kategori raderad.";
 
                
             return RedirectToAction("Index");
