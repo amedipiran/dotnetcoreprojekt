@@ -23,9 +23,19 @@ private readonly ApplicationDbContext _db;
         }
         [HttpPost]
             public IActionResult Create(Category obj) {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
-            return RedirectToAction("Index");
+                if (obj.Name != null && obj.Name == obj.DisplayOrder.ToString()){
+                    ModelState.AddModelError("name", "Ordningen kan inte matcha namnfältet.");
+                }
+                   if (obj.Name != null && obj.Name.ToLower() == "test"){
+                    ModelState.AddModelError("", "Test är ett ogiltigt värde.");
+                }
+                if(ModelState.IsValid) {
+                    _db.Categories.Add(obj);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+               
+            return View(obj);
         }
 
     }
