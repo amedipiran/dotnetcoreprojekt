@@ -36,7 +36,7 @@
         </td>
 <td>
     <div class="d-flex flex-column flex-md-row justify-content-md-end">
-        <a asp-controller="Category" asp-action="Edit" class="btn btn-primary btn-sm my-1 mx-md-1">
+        <a asp-controller="Category" asp-route-id="@obj.Id" asp-action="Edit" class="btn btn-primary btn-sm my-1 mx-md-1">
             <i class="bi bi-pencil-square"></i> Redigera
         </a>
         <a asp-controller="Category" asp-action="Delete" class="btn btn-danger btn-sm my-1 mx-md-1">

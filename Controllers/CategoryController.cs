@@ -38,5 +38,35 @@ private readonly ApplicationDbContext _db;
             return View(obj);
         }
 
+         public IActionResult Edit(int? id) {
+            if(id == null || id == 0){
+                return NotFound();
+            }
+
+            Category? CategoryFromDb = _db.Categories.Find(id);
+           
+
+            if (CategoryFromDb == null){
+                return NotFound();
+            }
+            return View(CategoryFromDb);
+        }
+        [HttpPost]
+            public IActionResult Edit(Category obj) {
+                if (obj.Name != null && obj.Name == obj.DisplayOrder.ToString()){
+                    ModelState.AddModelError("name", "Ordningen kan inte matcha namnfältet.");
+                }
+                   if (obj.Name != null && obj.Name.ToLower() == "test"){
+                    ModelState.AddModelError("", "Test är ett ogiltigt värde.");
+                }
+                if(ModelState.IsValid) {
+                    _db.Categories.Add(obj);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+               
+            return View(obj);
+        }
+
     }
 }
