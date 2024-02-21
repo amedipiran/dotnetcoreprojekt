@@ -53,14 +53,9 @@ private readonly ApplicationDbContext _db;
         }
         [HttpPost]
             public IActionResult Edit(Category obj) {
-                if (obj.Name != null && obj.Name == obj.DisplayOrder.ToString()){
-                    ModelState.AddModelError("name", "Ordningen kan inte matcha namnfältet.");
-                }
-                   if (obj.Name != null && obj.Name.ToLower() == "test"){
-                    ModelState.AddModelError("", "Test är ett ogiltigt värde.");
-                }
+           
                 if(ModelState.IsValid) {
-                    _db.Categories.Add(obj);
+                    _db.Categories.Update(obj);
                     _db.SaveChanges();
                     return RedirectToAction("Index");
                 }
