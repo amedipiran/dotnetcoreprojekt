@@ -45,6 +45,8 @@ private readonly ApplicationDbContext _db;
             }
 
             Category? CategoryFromDb = _db.Categories.Find(id);
+            //Category? CategoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+
            
 
             if (CategoryFromDb == null){
