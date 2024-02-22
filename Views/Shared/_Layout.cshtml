@@ -24,9 +24,23 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Hem</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">Kategori</a>
+            
+                    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Innehållshantering
+          </a>
+        <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Kategori</a>
                     </li>
+
+            <li><hr class="dropdown-divider"></li>
+
+          </ul>
+
+
+      
+
                 </ul>
             </div>
         </div>
