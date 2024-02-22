@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Projekt.Repository.IRepository {
-    internal interface IRepository<T> where T : class {
+    public interface IRepository<T> where T : class {
         //T-Category
         IEnumerable<T> GetAll();
         T Get(Expression<Func<T, bool>> filter);

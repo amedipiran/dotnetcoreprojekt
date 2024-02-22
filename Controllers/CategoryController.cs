@@ -2,19 +2,20 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Projekt.Data;
 using Projekt.Models;
+using Projekt.Repository.IRepository;
 
 namespace Projekt.Controllers
 {
     public class CategoryController : Controller {
 
-private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+private readonly ICategoryRepository _categoryRepo;
+        public CategoryController(ICategoryRepository db)
         {
-            _db = db;
+            _categoryRepo = db;
         }
         public IActionResult Index() {
 
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -30,8 +31,8 @@ private readonly ApplicationDbContext _db;
                     ModelState.AddModelError("", "Test är ett ogiltigt värde.");
                 }
                 if(ModelState.IsValid) {
-                    _db.Categories.Add(obj);
-                    _db.SaveChanges();
+                    _categoryRepo.Add(obj);
+                    _categoryRepo.Save();
                     TempData["Success"] = "Kategori skapad.";
                     return RedirectToAction("Index");
                 }
@@ -44,7 +45,7 @@ private readonly ApplicationDbContext _db;
                 return NotFound();
             }
 
-            Category? CategoryFromDb = _db.Categories.Find(id);
+            Category? CategoryFromDb = _categoryRepo.Get(u=>u.Id==id);
             //Category? CategoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
 
            
@@ -58,8 +59,8 @@ private readonly ApplicationDbContext _db;
             public IActionResult Edit(Category obj) {
            
                 if(ModelState.IsValid) {
-                    _db.Categories.Update(obj);
-                    _db.SaveChanges();
+                    _categoryRepo.Update(obj);
+                    _categoryRepo.Save();
                     TempData["Success"] = "Kategori uppdaterad.";
 
                     return RedirectToAction("Index");
@@ -72,7 +73,7 @@ private readonly ApplicationDbContext _db;
                 return NotFound();
             }
 
-            Category? CategoryFromDb = _db.Categories.Find(id);
+            Category? CategoryFromDb = _categoryRepo.Get(u=>u.Id==id);
            
 
             if (CategoryFromDb == null){
@@ -83,12 +84,12 @@ private readonly ApplicationDbContext _db;
         [HttpPost, ActionName("Delete")]
             public IActionResult DeletePOST(int? id) {
            
-           Category? obj = _db.Categories.Find(id);
+            Category? obj = _categoryRepo.Get(u=>u.Id==id);
             if(obj ==null) {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _categoryRepo.Remove(obj);
+            _categoryRepo.Save();
             TempData["Success"] = "Kategori raderad.";
 
                
