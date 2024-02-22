@@ -30,7 +30,7 @@ private readonly IUnitOfWork _unitOfWork;
                 if(ModelState.IsValid) {
                     _unitOfWork.Product.Add(obj);
                     _unitOfWork.Save();
-                    TempData["Success"] = "Kategori skapad.";
+                    TempData["Success"] = "Produkt skapad.";
                     return RedirectToAction("Index");
                 }
                
@@ -58,7 +58,7 @@ private readonly IUnitOfWork _unitOfWork;
                 if(ModelState.IsValid) {
                     _unitOfWork.Product.Update(obj);
                     _unitOfWork.Save();
-                    TempData["Success"] = "Kategori uppdaterad.";
+                    TempData["Success"] = "Produkt uppdaterad.";
 
                     return RedirectToAction("Index");
                 }
@@ -87,7 +87,7 @@ private readonly IUnitOfWork _unitOfWork;
             }
             _unitOfWork.Product.Remove(obj);
             _unitOfWork.Save();
-            TempData["Success"] = "Kategori raderad.";
+            TempData["Success"] = "Produkt raderad.";
 
                
             return RedirectToAction("Index");

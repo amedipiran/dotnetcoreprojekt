@@ -28,7 +28,10 @@ namespace Projekt.Data
         Price = 1000, 
         ListPrice = 900,
         Price50 = 800,
-        Price100 = 700
+        Price100 = 700,
+        CategoryId = 1,
+        ImageUrl = ""
+
     },
     new Product {
     Id = 2,
@@ -38,7 +41,11 @@ namespace Projekt.Data
     Price = 1100,
     ListPrice = 1000,
     Price50 = 900,
-    Price100 = 800
+    Price100 = 800,
+        CategoryId = 1,
+        ImageUrl = ""
+
+
 },
 
     new Product {
@@ -49,7 +56,10 @@ namespace Projekt.Data
         Price = 1249, 
         ListPrice = 1149,
         Price50 = 1049,
-        Price100 = 849
+        Price100 = 849,
+        CategoryId = 1,
+        ImageUrl = ""
+
     },
     new Product {
     Id = 4,
@@ -59,7 +69,11 @@ namespace Projekt.Data
     Price = 950,
     ListPrice = 850,
     Price50 = 750,
-    Price100 = 650
+    Price100 = 650,
+        CategoryId = 1,
+        ImageUrl = ""
+
+
 }
 
 

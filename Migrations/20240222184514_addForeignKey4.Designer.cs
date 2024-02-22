@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projekt.Data;
 
@@ -10,9 +11,11 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240222184514_addForeignKey4")]
+    partial class addForeignKey4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -79,9 +82,6 @@ namespace Projekt.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("TEXT");
-
                     b.Property<double?>("ListPrice")
                         .IsRequired()
                         .HasColumnType("REAL");
@@ -115,7 +115,6 @@ namespace Projekt.Migrations
                             Brand = "Nike",
                             CategoryId = 1,
                             Description = "Nike Air Force 1 är en legendarisk basketsko som först introducerades 1982 och är känd för att vara den första basketskon som använder Nike Air-teknologin. Denna innovation erbjuder överlägsen dämpning och stöd, vilket har bidragit till skons rykte på basketplanen och dess långvariga popularitet utanför den.",
-                            ImageUrl = "",
                             ListPrice = 900.0,
                             Price = 1000.0,
                             Price100 = 700.0,
@@ -128,7 +127,6 @@ namespace Projekt.Migrations
                             Brand = "Nike",
                             CategoryId = 1,
                             Description = "Nike Blazer Mid '77 fångar den gamla skolans charm av basket med dess vintagestil och klassiska design. Skon har en robust konstruktion med en överdel i läder och mocka, kompletterat med en retro Swoosh-logotyp för en autentisk look. Dess simpla men stiliga utseende har gjort den till en favorit både på och utanför basketplanen.",
-                            ImageUrl = "",
                             ListPrice = 1000.0,
                             Price = 1100.0,
                             Price100 = 800.0,
@@ -141,7 +139,6 @@ namespace Projekt.Migrations
                             Brand = "Adidas",
                             CategoryId = 1,
                             Description = "Adidas Campus är en ikonisk sneaker som ursprungligen lanserades på 1980-talet. Den är känd för sin låga profil, enkla design och hållbarhet, vilket gjort den till en favorit både inom skatekulturen och som en vardagssko.",
-                            ImageUrl = "",
                             ListPrice = 1149.0,
                             Price = 1249.0,
                             Price100 = 849.0,
@@ -154,7 +151,6 @@ namespace Projekt.Migrations
                             Brand = "Adidas",
                             CategoryId = 1,
                             Description = "Adidas Stan Smith är en tidlös tennissko som först släpptes på 1970-talet. Med sin minimalistiska design och signaturdetaljer som de perforerade tre ränderna och porträttet av Stan Smith på tungan, har denna sko blivit en ikon inom modevärlden. Dess låga profil och enkla estetik gör den till en mångsidig sko som passar till nästan allt.",
-                            ImageUrl = "",
                             ListPrice = 850.0,
                             Price = 950.0,
                             Price100 = 650.0,
