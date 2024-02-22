@@ -14,10 +14,13 @@ namespace Projekt.Repository {
     public class unitOfwork : IUnitOfWork
     {  private ApplicationDbContext _db;
         public ICategoryRepository Category { get;private set;}
+               public IProductRepository Product { get;private set;}
 
         public unitOfwork(ApplicationDbContext db) {
             _db = db;
             Category = new CategoryRepository(_db);
+            Product = new ProductRepository(_db);
+
         }
 
         public void Save()
