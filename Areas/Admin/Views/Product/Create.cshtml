@@ -9,14 +9,45 @@
         </div>
         <div asp-validation-summary="ModelOnly"></div>
         <div class="mb-3 row p-1">
-             <label asp-for="Name" class="p-0">Namn:</label>
-            <input asp-for="Name" class="form-control">
-            <span class="text-danger" asp-validation-for="Name"></span>
+             <label asp-for="Title" class="p-0">Titel:</label>
+            <input asp-for="Title" class="form-control">
+            <span class="text-danger" asp-validation-for="Title"></span>
         </div>
               <div class="mb-3 row p-1">
-             <label asp-for="DisplayOrder" class="p-0">Ordning:</label>
-            <input asp-for="DisplayOrder" class="form-control">
-            <span class="text-danger" asp-validation-for="DisplayOrder"></span>
+             <label asp-for="Description" class="p-0">Beskrivning:</label>
+            <input asp-for="Description" class="form-control">
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        
+
+              <div class="mb-3 row p-1">
+             <label asp-for="Brand" class="p-0">Märke:</label>
+            <input asp-for="Brand" class="form-control">
+            <span class="text-danger" asp-validation-for="Brand"></span>
+        </div>
+
+          <div class="mb-3 row p-1">
+             <label asp-for="Price" class="p-0">Pris:</label>
+            <input asp-for="Price" class="form-control">
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+
+          <div class="mb-3 row p-1">
+             <label asp-for="ListPrice" class="p-0">Pris för 1-50:</label>
+            <input asp-for="ListPrice" class="form-control">
+            <span class="text-danger" asp-validation-for="ListPrice"></span>
+        </div>
+
+          <div class="mb-3 row p-1">
+             <label asp-for="Price50" class="p-0">Pris för 50-100:</label>
+            <input asp-for="Price50" class="form-control">
+            <span class="text-danger" asp-validation-for="Price50"></span>
+        </div>
+
+          <div class="mb-3 row p-1">
+             <label asp-for="Price100" class="p-0">Pris för 100+:</label>
+            <input asp-for="Price100" class="form-control">
+            <span class="text-danger" asp-validation-for="Price100"></span>
         </div>
 
         <div class="row">

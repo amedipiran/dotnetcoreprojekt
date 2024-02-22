@@ -14,7 +14,7 @@
    <header>
     <nav class="navbar navbar-expand-lg bg-primary mb-4" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Klädbutiken</a>
+            <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Skobutiken</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,6 +32,9 @@
         <ul class="dropdown-menu">
                     <li>
                         <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Kategori</a>
+                    </li>
+                      <li>
+                        <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Produkter</a>
                     </li>
 
             <li><hr class="dropdown-divider"></li>
@@ -55,7 +58,7 @@
     </div>
 
 <footer class="border-top footer bg-primary text-light">
-    <div class="container text-center text-wrap text-break">
+    <div class="text-center text-wrap text-break">
         &copy; 2024 - Projekt av Roberto Piran Amedi. <br>  <a class="text-info" href="mailto:roam2200@student.miun.se">roam2200@student.miun.se</a> 
     </div>
 </footer>

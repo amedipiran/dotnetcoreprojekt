@@ -40,25 +40,25 @@ namespace Projekt.Migrations
                         {
                             Id = 1,
                             DisplayOrder = 1,
-                            Name = "Pants"
+                            Name = "Sneakers"
                         },
                         new
                         {
                             Id = 2,
                             DisplayOrder = 2,
-                            Name = "T-Shirts"
+                            Name = "Arbetsskor"
                         },
                         new
                         {
                             Id = 3,
                             DisplayOrder = 3,
-                            Name = "Shirts"
+                            Name = "Stövlar"
                         },
                         new
                         {
                             Id = 4,
                             DisplayOrder = 4,
-                            Name = "SweatShirts"
+                            Name = "Fritidsskor"
                         });
                 });
 

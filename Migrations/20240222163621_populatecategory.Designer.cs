@@ -11,8 +11,8 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240222155953_populateProducts")]
-    partial class populateProducts
+    [Migration("20240222163621_populatecategory")]
+    partial class populatecategory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,25 +43,25 @@ namespace Projekt.Migrations
                         {
                             Id = 1,
                             DisplayOrder = 1,
-                            Name = "Pants"
+                            Name = "Sneakers"
                         },
                         new
                         {
                             Id = 2,
                             DisplayOrder = 2,
-                            Name = "T-Shirts"
+                            Name = "Arbetsskor"
                         },
                         new
                         {
                             Id = 3,
                             DisplayOrder = 3,
-                            Name = "Shirts"
+                            Name = "Stövlar"
                         },
                         new
                         {
                             Id = 4,
                             DisplayOrder = 4,
-                            Name = "SweatShirts"
+                            Name = "Fritidsskor"
                         });
                 });
 

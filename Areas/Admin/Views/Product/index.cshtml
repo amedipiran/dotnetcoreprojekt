@@ -16,23 +16,31 @@
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
-        <th>
-            Kategorinamn
-        </th>
-        <th>
-            Ordning
-        </th>
+        <th>Titel</th>
+        <th>Beskrivning</th>
+        <th>Märke</th>
+        <th>Pris (kr)</th>
+        <th>Kategori</th>
         <th>Åtgärder</th>
     </tr>
   </thead>
   <tbody>
-@foreach(var obj in Model.OrderBy(u=>u.DisplayOrder)){
+@foreach(var obj in Model){
     <tr>
         <td>
-            @obj.Name
+            @obj.Title
         </td>
         <td>
-            @obj.DisplayOrder
+            @obj.Description
+        </td>
+         <td>
+            @obj.Brand
+        </td>
+        <td>
+            @obj.Price
+        </td>
+            <td>
+           
         </td>
 <td>
     <div class="d-flex flex-column flex-md-row justify-content-md-end">
