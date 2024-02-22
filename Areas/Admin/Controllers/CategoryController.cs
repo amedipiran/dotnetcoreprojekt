@@ -5,8 +5,9 @@ using Projekt.Models;
 using Projekt.Repository;
 using Projekt.Repository.IRepository;
 
-namespace Projekt.Controllers
+namespace Projekt.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller {
 
 private readonly IUnitOfWork _unitOfWork;

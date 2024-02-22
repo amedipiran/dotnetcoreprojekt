@@ -47,6 +47,6 @@ namespace Projekt.Repository {
         public void RemoveRange(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);        
-        }
+            }
     }
 }
