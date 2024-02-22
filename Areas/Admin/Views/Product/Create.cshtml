@@ -50,6 +50,14 @@
             <span class="text-danger" asp-validation-for="Price100"></span>
         </div>
 
+           <div class="mb-3 row p-1">
+             <label asp-for="CategoryId" class="p-0">Kategori:</label>
+            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-control"> 
+                <option disabled selected>--Välj Kategori--</option>
+            </select>
+            <span class="text-danger" asp-validation-for="Price100"></span>
+        </div>
+
         <div class="row">
             <div class="col-6 col-md-3">
                       <button type="submit" class="btn btn-primary form-control" >Skapa</button>

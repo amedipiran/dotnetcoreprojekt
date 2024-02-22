@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Projekt.Data;
 using Projekt.Models;
 using Projekt.Repository;
@@ -18,10 +19,18 @@ private readonly IUnitOfWork _unitOfWork;
         public IActionResult Index() {
 
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+          
             return View(objProductList);
         }
 
         public IActionResult Create() {
+              IEnumerable <SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u=> new SelectListItem {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+
+            ViewBag.CategoryList = CategoryList;
+            
             return View();
         }
         [HttpPost]
