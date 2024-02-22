@@ -1,4 +1,4 @@
-@model Product
+@model ProductVM
 
 <form method="post">
     <div class="border p-3 mt-4">
@@ -9,53 +9,59 @@
         </div>
         <div asp-validation-summary="ModelOnly"></div>
         <div class="mb-3 row p-1">
-             <label asp-for="Title" class="p-0">Titel:</label>
-            <input asp-for="Title" class="form-control">
-            <span class="text-danger" asp-validation-for="Title"></span>
+             <label asp-for="Product.Title" class="p-0">Titel:</label>
+            <input asp-for="Product.Title" class="form-control">
+            <span class="text-danger" asp-validation-for="Product.Title"></span>
         </div>
               <div class="mb-3 row p-1">
-             <label asp-for="Description" class="p-0">Beskrivning:</label>
-          <textarea asp-for="Description" class="form-control"> </textarea>
-            <span class="text-danger" asp-validation-for="Description"></span>
+             <label asp-for="Product.Description" class="p-0">Beskrivning:</label>
+          <textarea asp-for="Product.Description" class="form-control"> </textarea>
+            <span class="text-danger" asp-validation-for="Product.Description"></span>
         </div>
         
 
               <div class="mb-3 row p-1">
-             <label asp-for="Brand" class="p-0">Märke:</label>
-            <input asp-for="Brand" class="form-control">
-            <span class="text-danger" asp-validation-for="Brand"></span>
+             <label asp-for="Product.Brand" class="p-0">Märke:</label>
+            <input asp-for="Product.Brand" class="form-control">
+            <span class="text-danger" asp-validation-for="Product.Brand"></span>
         </div>
 
           <div class="mb-3 row p-1">
-             <label asp-for="Price" class="p-0">Pris:</label>
-            <input asp-for="Price" class="form-control">
-            <span class="text-danger" asp-validation-for="Price"></span>
+             <label asp-for="Product.Price" class="p-0">Pris:</label>
+            <input asp-for="Product.Price" class="form-control">
+            <span class="text-danger" asp-validation-for="Product.Price"></span>
         </div>
 
           <div class="mb-3 row p-1">
-             <label asp-for="ListPrice" class="p-0">Pris för 1-50:</label>
-            <input asp-for="ListPrice" class="form-control">
-            <span class="text-danger" asp-validation-for="ListPrice"></span>
+             <label asp-for="Product.ListPrice" class="p-0">Pris för 1-50:</label>
+            <input asp-for="Product.ListPrice" class="form-control">
+            <span class="text-danger" asp-validation-for="Product.ListPrice"></span>
         </div>
 
           <div class="mb-3 row p-1">
-             <label asp-for="Price50" class="p-0">Pris för 50-100:</label>
-            <input asp-for="Price50" class="form-control">
-            <span class="text-danger" asp-validation-for="Price50"></span>
+             <label asp-for="Product.Price50" class="p-0">Pris för 50-100:</label>
+            <input asp-for="Product.Price50" class="form-control">
+            <span class="text-danger" asp-validation-for="Product.Price50"></span>
         </div>
 
           <div class="mb-3 row p-1">
-             <label asp-for="Price100" class="p-0">Pris för 100+:</label>
-            <input asp-for="Price100" class="form-control">
-            <span class="text-danger" asp-validation-for="Price100"></span>
+             <label asp-for="Product.Price100" class="p-0">Pris för 100+:</label>
+            <input asp-for="Product.Price100" class="form-control">
+            <span class="text-danger" asp-validation-for="Product.Price100"></span>
         </div>
 
            <div class="mb-3 row p-1">
-             <label asp-for="CategoryId" class="p-0">Kategori:</label>
-            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-control"> 
+             <label asp-for="Product.CategoryId" class="p-0">Kategori:</label>
+            <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-control"> 
                 <option disabled selected>--Välj Kategori--</option>
             </select>
-            <span class="text-danger" asp-validation-for="Price100"></span>
+            <span class="text-danger" asp-validation-for="Product.CategoryId"></span>
+        </div>
+
+               <div class="mb-3 row p-1">
+             <label asp-for="Product.ImageUrl" class="p-0">Url för bild:</label>
+            <input asp-for="Product.ImageUrl" class="form-control">
+            <span class="text-danger" asp-validation-for="Product.ImageUrl"></span>
         </div>
 
         <div class="row">

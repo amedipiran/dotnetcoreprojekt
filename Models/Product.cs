@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 namespace Projekt.Models {
     public class Product {
          [Key]
@@ -45,7 +46,10 @@ namespace Projekt.Models {
 
     public int CategoryId { get; set;}
     [ForeignKey("CategoryId")]
+    [ValidateNever]
+
     public Category? Category { get; set;}
+    [ValidateNever]
 
 public string? ImageUrl { get; set; }
     }
