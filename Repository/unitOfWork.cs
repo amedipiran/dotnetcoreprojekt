@@ -11,20 +11,18 @@ using Projekt.Models;
 using Projekt.Repository.IRepository;
 
 namespace Projekt.Repository {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
-    {
-        private ApplicationDbContext _db;
-        public CategoryRepository(ApplicationDbContext db) : base(db){
+    public class unitOfwork : IUnitOfWork
+    {  private ApplicationDbContext _db;
+        public ICategoryRepository Category { get;private set;}
+
+        public unitOfwork(ApplicationDbContext db) {
             _db = db;
+            Category = new CategoryRepository(_db);
         }
 
-        public void Update(Category obj) {
-
-            _db.Categories.Update(obj);
-
+        public void Save()
+        {
+            _db.SaveChanges();
         }
-
     }
-
-   
 }

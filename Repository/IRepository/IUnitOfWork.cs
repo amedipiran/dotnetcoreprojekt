@@ -1,4 +1,3 @@
-using Projekt.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Projekt.Repository.IRepository {
-    public interface ICategoryRepository : IRepository<Category> {
+    public interface IUnitOfWork {
+       ICategoryRepository Category { get;}
 
-        void Update(Category obj);
- 
+       void Save(); 
     }
-}
+ }
