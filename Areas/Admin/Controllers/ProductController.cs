@@ -24,9 +24,9 @@ private readonly IUnitOfWork _unitOfWork;
             return View(objProductList);
         }
 
-        public IActionResult Create() {
+        public IActionResult Upsert(int? id) {
 
-           
+           //Skapa
             ProductVM productVM = new() {
                 CategoryList = _unitOfWork.Category.GetAll().Select(u=> new SelectListItem {
                 Text = u.Name,
@@ -34,11 +34,17 @@ private readonly IUnitOfWork _unitOfWork;
             }), 
             Product = new Product()
             };
-            
+            if(id == null || id == 0) {
             return View(productVM);
+
+            } else {
+                //Uppdatera
+                productVM.Product = _unitOfWork.Product.Get(u=>u.Id==id);
+                return View(productVM);
+            }
         }
         [HttpPost]
-            public IActionResult Create(ProductVM productVM) {
+            public IActionResult Upsert(ProductVM productVM, IFormFile? file) {
                
                 if(ModelState.IsValid) {
                     _unitOfWork.Product.Add(productVM.Product);
@@ -57,34 +63,6 @@ private readonly IUnitOfWork _unitOfWork;
                
         }
 
-         public IActionResult Edit(int? id) {
-            if(id == null || id == 0){
-                return NotFound();
-            }
-
-            Product? productFromDb = _unitOfWork.Product.Get(u=>u.Id==id);
-            //Product? productFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
-
-           
-
-            if (productFromDb == null){
-                return NotFound();
-            }
-            return View(productFromDb);
-        }
-        [HttpPost]
-            public IActionResult Edit(Product obj) {
-           
-                if(ModelState.IsValid) {
-                    _unitOfWork.Product.Update(obj);
-                    _unitOfWork.Save();
-                    TempData["Success"] = "Produkt uppdaterad.";
-
-                    return RedirectToAction("Index");
-                }
-               
-            return View(obj);
-        }
     public IActionResult Delete(int? id) {
             if(id == null || id == 0){
                 return NotFound();
