@@ -100,24 +100,29 @@ private readonly IWebHostEnvironment _webHostEnvironment;
            
         }
 
+[HttpDelete]
+public IActionResult Delete(int? id){
+    var productToDelete = _unitOfWork.Product.Get(u => u.Id == id);
 
-        public IActionResult Delete(int? id){
-            var productToDelete = _unitOfWork.Product.Get(u=>u.Id == id);
-
-            if(productToDelete==null){
-                return Json(new {success=false, message="Error vid radering."});
-            }
-                var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageUrl.TrimStart('/'));
-    if (System.IO.File.Exists(oldImagePath)) {
-        System.IO.File.Delete(oldImagePath);
+    if(productToDelete == null){
+        return Json(new { success = false, message = "Error vid radering: Produkt hittades inte." });
     }
 
-            _unitOfWork.Product.Remove(productToDelete);
-            _unitOfWork.Save();
-           
-                return Json(new {success=true, message="Raderingen lyckades."});
-           
+    // Kontrollera att ImageUrl inte är null eller tom innan man försöker radera bilden
+    if (!string.IsNullOrEmpty(productToDelete.ImageUrl)) {
+        // Konstruera sökvägen och kontrollera att filen finns innan man försöker radera den
+        var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageUrl.TrimStart('/'));
+        if (System.IO.File.Exists(oldImagePath)) {
+            System.IO.File.Delete(oldImagePath);
         }
+    }
+
+    _unitOfWork.Product.Remove(productToDelete);
+    _unitOfWork.Save();
+
+    return Json(new { success = true, message = "Raderingen lyckades." });
+}
+
         #endregion
 
     }
