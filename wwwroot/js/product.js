@@ -18,7 +18,7 @@ function loadDataTable() {
                     <a href="/admin/product/upsert?id=${data}" class="btn btn-primary btn-sm my-1 mx-md-1">
                     <i class="bi bi-pencil-square"> </i> Ändra
                     </a>
-                    <a onClick=Delete('/admin/product/delete/${data}' class="btn btn-danger btn-sm my-1 mx-md-1">
+                    <a onClick="Delete('/admin/product/delete/${data}')" class="btn btn-danger btn-sm my-1 mx-md-1">
                     <i class="bi bi-trash-fill"> </i> Radera
                     </a>
                     </div>`

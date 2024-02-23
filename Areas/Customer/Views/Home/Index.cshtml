@@ -21,14 +21,14 @@
                             <p class="card-title text-warning text-center"> by <b>@product.Brand</b></p>
                         </div>
                           <div class="pl-1">
-                            <p class="text-dark text-opacity-75 text-center font-weight-bold mb-0">Bulkköp: <span class="text-decoration-line-through">@product.ListPrice</span>kr</p>
+                            <p class="text-dark text-opacity-75 text-center font-weight-bold mb-0">Bulkköp: <span class="text-decoration-line-through">@product.Price</span>kr</p>
                         </div>
                         <div class="pl-1">
                             <p class="text-dark text-opacity-75 text-center"> Från: <span>@product.Price100</span>kr</p>
                         </div>
                     </div>
                     <div>
-                        <a class="btn btn-primary btn-gradient border-0 form-control" href="#">Läs mer</a>
+                        <a class="btn btn-primary btn-gradient border-0 form-control" asp-action="Details" asp-route-id="@product.Id">Läs mer</a>
                     </div>
                 </div>
              </div>   
