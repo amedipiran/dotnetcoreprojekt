@@ -15,10 +15,10 @@ function loadDataTable() {
              { "data": "id",
                 "render": function(data){
                     return `<div class="w-75 btn-group">
-                    <a href="/admin/product/upsert?id=${data}" class="btn btn-primary mx-2">
+                    <a href="/admin/product/upsert?id=${data}" class="btn btn-primary btn-sm my-1 mx-md-1">
                     <i class="bi bi-pencil-square"> </i> Ändra
                     </a>
-                    <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-danger mx-2">
+                    <a onClick=Delete('/admin/product/delete/${data}' class="btn btn-danger btn-sm my-1 mx-md-1">
                     <i class="bi bi-trash-fill"> </i> Radera
                     </a>
                     </div>`
