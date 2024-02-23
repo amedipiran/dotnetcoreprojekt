@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<table class="table table-bordered table-striped table-scroll">
+<table id="tblData" class="table table-bordered table-striped table-scroll">
     <thead>
     <tr>
         <th>Titel</th>
@@ -21,40 +21,12 @@
         <th>Pris (kr)</th>
         <th>Kategori</th>
         <th>Åtgärder</th>
+
     </tr>
   </thead>
-  <tbody>
-@foreach(var obj in Model){
-    <tr>
-        <td>
-            @obj.Title
-        </td>
 
-         <td>
-            @obj.Brand
-        </td>
-        <td>
-            @obj.Price
-        </td>
-            <td>
-           @obj.Category.Name
-        </td>
-<td>
-    <div class="d-flex flex-column flex-md-row justify-content-md-end">
-        <a asp-controller="Product" asp-route-id="@obj.Id" asp-action="Upsert" class="btn btn-primary btn-sm my-1 mx-md-1">
-            <i class="bi bi-pencil-square"></i> Ändra
-        </a>
-        <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm my-1 mx-md-1">
-            <i class="bi bi-trash3"></i> Radera
-        </a>
-    </div>
-</td>
-
-
-
-
-    </tr>
-    }
-  </tbody>
 </table>
 </div>
+@section Scripts {
+    <script src="~/js/product.js"></script>
+}

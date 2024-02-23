@@ -90,34 +90,6 @@ private readonly IWebHostEnvironment _webHostEnvironment;
                
         }
 
-    public IActionResult Delete(int? id) {
-            if(id == null || id == 0){
-                return NotFound();
-            }
-
-            Product? productFromDb = _unitOfWork.Product.Get(u=>u.Id==id);
-           
-
-            if (productFromDb == null){
-                return NotFound();
-            }
-            return View(productFromDb);
-        }
-        [HttpPost, ActionName("Delete")]
-            public IActionResult DeletePOST(int? id) {
-           
-            Product? obj = _unitOfWork.Product.Get(u=>u.Id==id);
-            if(obj ==null) {
-                return NotFound();
-            }
-            _unitOfWork.Product.Remove(obj);
-            _unitOfWork.Save();
-            TempData["Success"] = "Produkt raderad.";
-
-               
-            return RedirectToAction("Index");
-        }
-
         //API för att skicka data till Cloudtables
         #region API CALLS
         [HttpGet]
@@ -125,6 +97,25 @@ private readonly IWebHostEnvironment _webHostEnvironment;
             List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
             
             return Json(new {data = objProductList});
+           
+        }
+
+
+        public IActionResult Delete(int? id){
+            var productToDelete = _unitOfWork.Product.Get(u=>u.Id == id);
+
+            if(productToDelete==null){
+                return Json(new {success=false, message="Error vid radering."});
+            }
+                var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageUrl.TrimStart('/'));
+    if (System.IO.File.Exists(oldImagePath)) {
+        System.IO.File.Delete(oldImagePath);
+    }
+
+            _unitOfWork.Product.Remove(productToDelete);
+            _unitOfWork.Save();
+           
+                return Json(new {success=true, message="Raderingen lyckades."});
            
         }
         #endregion
