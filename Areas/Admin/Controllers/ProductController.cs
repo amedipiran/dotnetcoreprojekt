@@ -21,7 +21,7 @@ private readonly IWebHostEnvironment _webHostEnvironment;
         }
         public IActionResult Index() {
 
-            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
           
             return View(objProductList);
         }
@@ -117,6 +117,17 @@ private readonly IWebHostEnvironment _webHostEnvironment;
                
             return RedirectToAction("Index");
         }
+
+        //API för att skicka data till Cloudtables
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll(){
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
+            
+            return Json(new {data = objProductList});
+           
+        }
+        #endregion
 
     }
 }

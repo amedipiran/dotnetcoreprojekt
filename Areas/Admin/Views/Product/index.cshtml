@@ -9,7 +9,7 @@
 </h2>
     </div>
       <div class="col-6 text-end">
-        <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Lägg till en ny produkt</a>
+        <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Lägg till produkt</a>
     </div>
 </div>
 
@@ -17,7 +17,6 @@
     <thead>
     <tr>
         <th>Titel</th>
-        <th>Beskrivning</th>
         <th>Märke</th>
         <th>Pris (kr)</th>
         <th>Kategori</th>
@@ -30,9 +29,7 @@
         <td>
             @obj.Title
         </td>
-        <td>
-            @obj.Description
-        </td>
+
          <td>
             @obj.Brand
         </td>
@@ -40,7 +37,7 @@
             @obj.Price
         </td>
             <td>
-           
+           @obj.Category.Name
         </td>
 <td>
     <div class="d-flex flex-column flex-md-row justify-content-md-end">

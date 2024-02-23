@@ -18,8 +18,17 @@ html {
 }
 
 .table-scroll {
-  display: block;
+
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .table-scroll {
+    display: block;
+  
+  }
 }
