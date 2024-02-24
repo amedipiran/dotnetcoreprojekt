@@ -5,7 +5,7 @@ using Projekt.Models;
 
 namespace Projekt.Data 
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>  {
+    public partial class ApplicationDbContext : IdentityDbContext<IdentityUser>  {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             
