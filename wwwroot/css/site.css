@@ -32,3 +32,9 @@ html {
   
   }
 }
+
+
+.my-gradient-btn:hover {
+  background-color: #b37d00; /* Mörkare blå för hover, fallback */
+  background-image: linear-gradient(to right, #b37a00, #ffbf66); /* Anpassad gradient för hover */
+}

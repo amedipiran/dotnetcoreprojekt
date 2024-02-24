@@ -45,19 +45,19 @@
         </div>
 
           <div class="mb-3 row p-1">
-             <label asp-for="Product.ListPrice" class="p-0">Pris för 1-50:</label>
+             <label asp-for="Product.ListPrice" class="p-0">Pris för 1-5:</label>
             <input asp-for="Product.ListPrice" class="form-control">
             <span class="text-danger" asp-validation-for="Product.ListPrice"></span>
         </div>
 
           <div class="mb-3 row p-1">
-             <label asp-for="Product.Price50" class="p-0">Pris för 50-100:</label>
+             <label asp-for="Product.Price50" class="p-0">Pris för 6-10:</label>
             <input asp-for="Product.Price50" class="form-control">
             <span class="text-danger" asp-validation-for="Product.Price50"></span>
         </div>
 
           <div class="mb-3 row p-1">
-             <label asp-for="Product.Price100" class="p-0">Pris för 100+:</label>
+             <label asp-for="Product.Price100" class="p-0">Pris för 10+:</label>
             <input asp-for="Product.Price100" class="form-control">
             <span class="text-danger" asp-validation-for="Product.Price100"></span>
         </div>
@@ -78,9 +78,9 @@
         <div class="row">
             <div class="col-6 col-md-3">
                 @if(Model.Product.Id != 0) {
-<button type="submit" class="btn btn-primary form-control" >Uppdatera</button>
+<button type="submit" class="btn btn-primary my-gradient-btn form-control" >Uppdatera</button>
                 } else {
-<button type="submit" class="btn btn-primary form-control" >Skapa</button>
+<button type="submit" class="btn btn-primary my-gradient-btn form-control" >Skapa</button>
                 }
                       
             </div>
@@ -107,8 +107,8 @@
     <script>
   tinymce.init({
     selector: 'textarea',
-    plugins: 'anchor autolink charmap codesample emoticons lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | table mergetags | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap',
+    plugins: 'anchor autolink charmap codesample emoticons lists searchreplace table visualblocks wordcount casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | table mergetags | spellcheckdialog a11ycheck typography | align lineheight | numlist bullist indent outdent | emoticons charmap',
     tinycomments_mode: 'embedded',
     tinycomments_author: 'Author name',
     mergetags_list: [

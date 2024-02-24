@@ -1,10 +1,11 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Models;
 
 namespace Projekt.Data 
 {
-    public class ApplicationDbContext : IdentityDbContext {
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>  {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             
@@ -15,7 +16,7 @@ namespace Projekt.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); // Viktigt att anropa basversionen först
+            base.OnModelCreating(modelBuilder); 
 
             modelBuilder.Entity<Category>().HasData(
                 new Category {Id=1, Name="Sneakers", DisplayOrder=1},
