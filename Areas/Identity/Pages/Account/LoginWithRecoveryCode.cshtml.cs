@@ -54,7 +54,7 @@ namespace Projekt.Areas.Identity.Pages.Account
             [BindProperty]
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
+            [Display(Name = "Återställningskod")]
             public string RecoveryCode { get; set; }
         }
 
