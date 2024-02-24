@@ -21,12 +21,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<App
 
 builder.Services.AddScoped<IUnitOfWork, unitOfwork>(); 
 
-/* // Lägg till autentisering med Facebook
-builder.Services.AddAuthentication().AddFacebook(options =>
-{
-    options.AppId = builder.Configuration["Authentication:Facebook:AppId"]; // Uppdatera med dina Facebook App Id-inställningar
-    options.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"]; // Uppdatera med dina Facebook App Secret-inställningar
-}); */
+
 
 var app = builder.Build();
 
