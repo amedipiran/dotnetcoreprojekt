@@ -3,6 +3,11 @@ using Projekt.Data;
 using Projekt.Repository;
 using Projekt.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +19,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddScoped<IUnitOfWork, unitOfwork>();
+builder.Services.AddScoped<IUnitOfWork, unitOfwork>(); 
+
+/* // Lägg till autentisering med Facebook
+builder.Services.AddAuthentication().AddFacebook(options =>
+{
+    options.AppId = builder.Configuration["Authentication:Facebook:AppId"]; // Uppdatera med dina Facebook App Id-inställningar
+    options.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"]; // Uppdatera med dina Facebook App Secret-inställningar
+}); */
 
 var app = builder.Build();
 
@@ -22,7 +34,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
