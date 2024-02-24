@@ -49,7 +49,7 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "Lösenordet måste vara minst {2} och högst {1} tecken lång.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "New password")]
             public string NewPassword { get; set; }
@@ -59,8 +59,8 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Bekräfta nytt lösenord")]
+            [Compare("NewPassword", ErrorMessage = "Det nya lösenordet och bekräftelsen stämmer inte överens.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -106,7 +106,7 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your password has been set.";
+            StatusMessage = "Ditt lösenord har lagts till.";
 
             return RedirectToPage();
         }

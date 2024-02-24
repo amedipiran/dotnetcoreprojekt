@@ -1,25 +1,53 @@
 ﻿@page
-@model Disable2faModel
+@model EnableAuthenticatorModel
 @{
-    ViewData["Title"] = "Disable two-factor authentication (2FA)";
+    ViewData["Title"] = "Konfigurera autentiseringsapp";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h3>@ViewData["Title"]</h3>
-
-<div class="alert alert-warning" role="alert">
-    <p>
-        <strong>This action only disables 2FA.</strong>
-    </p>
-    <p>
-        Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key
-        used in an authenticator app you should <a asp-page="./ResetAuthenticator">reset your authenticator keys.</a>
-    </p>
-</div>
-
 <div>
-    <form method="post">
-        <button class="btn btn-danger" type="submit">Disable 2FA</button>
-    </form>
+    <p>För att använda en autentiseringsapp, följ dessa steg:</p>
+    <ol class="list">
+        <li>
+            <p>
+                Ladda ner en tvåfaktorsautentiseringsapp som Microsoft Authenticator för
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> och
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> eller
+                Google Authenticator för
+                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> och
+                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
+            </p>
+        </li>
+        <li>
+            <p>Skanna QR-koden eller ange denna nyckel <kbd>@Model.SharedKey</kbd> i din tvåfaktorsautentiseringsapp. Mellanslag och versaler spelar ingen roll.</p>
+            <div class="alert alert-info">Lär dig hur du <a href="https://go.microsoft.com/fwlink/?Linkid=852423">aktiverar QR-kodgenerering</a>.</div>
+            <div id="qrCode"></div>
+            <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
+        </li>
+        <li>
+            <p>
+                När du har skannat QR-koden eller matat in nyckeln ovan, kommer din tvåfaktorsautentiseringsapp att ge dig
+                en unik kod. Ange koden i bekräftelserutan nedan.
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="send-code" method="post">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Code" class="form-control" autocomplete="off" placeholder="Vänligen ange koden."/>
+                            <label asp-for="Input.Code" class="control-label form-label">Verifieringskod</label>
+                            <span asp-validation-for="Input.Code" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary">Verifiera</button>
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ol>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

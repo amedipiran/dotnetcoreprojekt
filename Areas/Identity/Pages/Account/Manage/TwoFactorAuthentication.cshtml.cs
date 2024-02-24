@@ -82,7 +82,7 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.ForgetTwoFactorClientAsync();
-            StatusMessage = "The current browser has been forgotten. When you login again from this browser you will be prompted for your 2fa code.";
+            StatusMessage = "Den aktuella webbläsaren har glömts bort. När du loggar in igen från denna webbläsare kommer du att bli ombedd att ange din 2fa-kod.";
             return RedirectToPage();
         }
     }
