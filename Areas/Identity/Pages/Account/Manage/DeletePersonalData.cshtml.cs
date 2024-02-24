@@ -1,5 +1,5 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+// Licensierad till .NET Foundation under ett eller flera avtal.
+// .NET Foundation licensierar denna fil till dig under MIT-licensen.
 #nullable disable
 
 using System;
@@ -29,30 +29,30 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Detta API stöder ASP.NET Core Identity standard UI infrastruktur och är inte avsedd att användas
+        ///     direkt från din kod. Detta API kan ändras eller tas bort i framtida utgåvor.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Detta API stöder ASP.NET Core Identity standard UI infrastruktur och är inte avsedd att användas
+        ///     direkt från din kod. Detta API kan ändras eller tas bort i framtida utgåvor.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Detta API stöder ASP.NET Core Identity standard UI infrastruktur och är inte avsedd att användas
+            ///     direkt från din kod. Detta API kan ändras eller tas bort i framtida utgåvor.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Lösenordet är obligatoriskt.")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Detta API stöder ASP.NET Core Identity standard UI infrastruktur och är inte avsedd att användas
+        ///     direkt från din kod. Detta API kan ändras eller tas bort i framtida utgåvor.
         /// </summary>
         public bool RequirePassword { get; set; }
 
@@ -61,7 +61,7 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Kunde inte ladda användare med ID '{_userManager.GetUserId(User)}'.");
             }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -73,7 +73,7 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Kunde inte ladda användare med ID '{_userManager.GetUserId(User)}'.");
             }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -81,7 +81,7 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, "Felaktigt lösenord.");
                     return Page();
                 }
             }
@@ -90,12 +90,12 @@ namespace Projekt.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                throw new InvalidOperationException($"Ett oväntat fel inträffade vid radering av användaren.");
             }
 
             await _signInManager.SignOutAsync();
 
-            _logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+            _logger.LogInformation("Användare med ID '{UserId}' har raderat sig själv.", userId);
 
             return Redirect("~/");
         }
