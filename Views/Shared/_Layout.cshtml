@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <body>
-   <header>
+  <header>
     <nav class="navbar navbar-expand-lg bg-primary mb-4" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Skobutiken</a>
@@ -21,35 +21,29 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav flex-grow-1">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Hem</a>
                     </li>
-            
                     <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Innehållshantering
-          </a>
-        <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Kategori</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Innehållshantering
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Kategori</a></li>
+                            <li><a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Produkter</a></li>
+                        </ul>
                     </li>
-                      <li>
-                        <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Produkter</a>
-                    </li>
-
-            <li><hr class="dropdown-divider"></li>
-
-          </ul>
-
-
-      
-
                 </ul>
+                <!-- Lägg till denna div runt _LoginPartial för att justera till höger -->
+                <div class="ms-auto">
+                    <partial name="_LoginPartial" />
+                </div>
             </div>
         </div>
     </nav>
 </header>
+
 
     <div class="container">
         <main role="main" class="pb-3">
