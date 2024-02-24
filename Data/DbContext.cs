@@ -1,24 +1,28 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Models;
 
 namespace Projekt.Data 
 {
-    public class ApplicationDbContext : DbContext {
+    public class ApplicationDbContext : IdentityDbContext {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             
         }
 
-    public DbSet<Category> Categories { get; set;}
-    public DbSet<Product> Products { get; set;}
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-                modelBuilder.Entity<Category>().HasData(
-                    new Category {Id=1, Name="Sneakers", DisplayOrder=1},
-                    new Category {Id=2, Name="Arbetsskor", DisplayOrder=2}, new Category {Id=3, Name="Stövlar", DisplayOrder=3},
-                    new Category {Id=4, Name="Fritidsskor", DisplayOrder=4}
+            base.OnModelCreating(modelBuilder); // Viktigt att anropa basversionen först
 
-                );
+            modelBuilder.Entity<Category>().HasData(
+                new Category {Id=1, Name="Sneakers", DisplayOrder=1},
+                new Category {Id=2, Name="Arbetsskor", DisplayOrder=2}, 
+                new Category {Id=3, Name="Stövlar", DisplayOrder=3},
+                new Category {Id=4, Name="Fritidsskor", DisplayOrder=4}
+            );
           modelBuilder.Entity<Product>().HasData(
     new Product {
         Id = 1,
