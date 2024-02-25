@@ -27,6 +27,10 @@ namespace Projekt.Data
                 new Category {Id=3, Name="Stövlar", DisplayOrder=3},
                 new Category {Id=4, Name="Fritidsskor", DisplayOrder=4}
             );
+              modelBuilder.Entity<Company>().HasData(
+                new Company {Id=2, Name="SneakersNStuff", StreetAddress = "HejsanGatan 6", City = "Stockholm", State = "Stockholm", PostalCode="66666", PhoneNumber="0777777777"},
+                new Company {Id=3, Name="Hejsan", StreetAddress = "Tjorvengatan 6", City = "Stockholm", State = "Stockholm", PostalCode="66666", PhoneNumber="0777777777"}
+            );
           modelBuilder.Entity<Product>().HasData(
     new Product {
         Id = 1,
@@ -82,10 +86,7 @@ namespace Projekt.Data
         ImageUrl = ""
 
 
-}
-
-
-);
+});
 
         }
 
