@@ -27,6 +27,16 @@
                 <label asp-for="Input.Email" class="ms-2 text-muted">E-post</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
+                    <div class="form-floating mb-3 col-6">
+                <input asp-for="Input.Name" class="form-control" placeholder="John Doe" />
+                <label asp-for="Input.Name" class="ms-2 text-muted">Namn</label>
+                <span asp-validation-for="Input.State" class="text-danger"></span>
+            </div>
+                   <div class="form-floating mb-3 col-6">
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="07333333" />
+                <label asp-for="Input.Name" class="ms-2 text-muted">Telefonnummer</label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
             <div class="form-floating mb-3 col-md-6">
                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Lösenord" />
                 <label class="ms-2 text-muted" asp-for="Input.Password">Lösenord</label>
@@ -37,6 +47,33 @@
                 <label class="ms-2 text-muted" asp-for="Input.ConfirmPassword">Bekräfta lösenord</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+       
+              <div class="form-floating mb-3 col-6">
+                <input asp-for="Input.StreetAddress" class="form-control" placeholder="Addressgatan 12A" />
+                <label asp-for="Input.StreetAddress" class="ms-2 text-muted">Adress</label>
+                <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-floating mb-3 col-6">
+                <input asp-for="Input.City" class="form-control" placeholder="Norrköping" />
+                <label asp-for="Input.City" class="ms-2 text-muted">Stad</label>
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3 col-6">
+                <input asp-for="Input.State" class="form-control" placeholder="Östergötland" />
+                <label asp-for="Input.State" class="ms-2 text-muted">Län</label>
+                <span asp-validation-for="Input.State" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3 col-6">
+                <input asp-for="Input.PostalCode" class="form-control" placeholder="602 33" />
+                <label asp-for="Input.PostalCode" class="ms-2 text-muted">Postkod</label>
+                <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+            </div>
+
                   <div class="form-floating mb-3 col-md-6">
                     <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
                         <option disabled selected>Välj roll</option>
@@ -52,13 +89,13 @@
     <div class="col-md-12">
         <section>
             <p class="divider-text d-flex">Eller</p>
-            <h3>Använd en annan tjänst för att registrera dig</h3>
+            <h4>Använd en annan tjänst för att registrera dig</h4>
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
                         <p>
-                            Det finns inga konfigurerade externa autentiseringstjänster. Se denna <a href="https://go.microsoft.com/fwlink/?LinkID=532715">artikel
+                            Det finns inga konfigurerade externa autentiseringstjänster. Se denna <a href="https://go.microsoft.com/fwlink/?LinkID=532715" class="link-info">artikel
                             om att ställa in denna ASP.NET-applikation för att stödja inloggning via externa tjänster</a>.
                         </p>
                     </div>
