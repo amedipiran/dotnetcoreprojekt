@@ -16,9 +16,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultDbString"))
-);
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultDbString")));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options=> {
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LoginPath = $"/Identity/Account/Logout";
+    options.LoginPath = $"/Identity/Account/AccessDenied";
+
+});
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IUnitOfWork, unitOfwork>(); 

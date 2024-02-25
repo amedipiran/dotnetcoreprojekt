@@ -6,10 +6,15 @@ using Projekt.Models;
 using Projekt.Models.ViewModels;
 using Projekt.Repository;
 using Projekt.Repository.IRepository;
+using Projekt.Utility;
+using Microsoft.AspNetCore.Authorization;
+
+
 
 namespace Projekt.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller {
 
 private readonly IUnitOfWork _unitOfWork;

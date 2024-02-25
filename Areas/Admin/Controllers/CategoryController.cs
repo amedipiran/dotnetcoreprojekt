@@ -1,13 +1,16 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Projekt.Data;
 using Projekt.Models;
 using Projekt.Repository;
 using Projekt.Repository.IRepository;
+using Projekt.Utility;
 
 namespace Projekt.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller {
 
 private readonly IUnitOfWork _unitOfWork;

@@ -23,12 +23,12 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Hem</a>
+                        <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> Hem</a>
                     </li>
                     @if(User.IsInRole(SD.Role_Admin)) {
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-pen"></i>
                             Innehållshantering
                         </a>
                         <ul class="dropdown-menu">
