@@ -149,7 +149,7 @@ namespace Projekt.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
 
-                    if(String.IsNullOrEmpty(Input.Role)){
+                    if(!String.IsNullOrEmpty(Input.Role)){
                         await _userManager.AddToRoleAsync(user, Input.Role);
                     } else {
                         await _userManager.AddToRoleAsync(user, SD.Role_Customer);
