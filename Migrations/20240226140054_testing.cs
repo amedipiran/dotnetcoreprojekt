@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projekt.Migrations
 {
     /// <inheritdoc />
-    public partial class FixForApplicationUser : Migration
+    public partial class testing : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,36 +28,6 @@ namespace Projekt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<int>(type: "INTEGER", nullable: false),
-                    StreetAddress = table.Column<string>(type: "TEXT", nullable: true),
-                    City = table.Column<string>(type: "TEXT", nullable: true),
-                    State = table.Column<string>(type: "TEXT", nullable: true),
-                    PostalCode = table.Column<string>(type: "TEXT", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -69,6 +39,24 @@ namespace Projekt.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    StreetAddress = table.Column<string>(type: "TEXT", nullable: true),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
+                    State = table.Column<string>(type: "TEXT", nullable: true),
+                    PostalCode = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,6 +78,70 @@ namespace Projekt.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    Author = table.Column<string>(type: "TEXT", nullable: false),
+                    Price = table.Column<double>(type: "REAL", nullable: false),
+                    ListPrice = table.Column<double>(type: "REAL", nullable: false),
+                    Price50 = table.Column<double>(type: "REAL", nullable: false),
+                    Price100 = table.Column<double>(type: "REAL", nullable: false),
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Discriminator = table.Column<string>(type: "TEXT", maxLength: 21, nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    StreetAddress = table.Column<string>(type: "TEXT", nullable: true),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
+                    State = table.Column<string>(type: "TEXT", nullable: true),
+                    PostalCode = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyId = table.Column<int>(type: "INTEGER", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -178,28 +230,28 @@ namespace Projekt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "ShoppingCarts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Brand = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<double>(type: "REAL", nullable: false),
-                    ListPrice = table.Column<double>(type: "REAL", nullable: false),
-                    Price50 = table.Column<double>(type: "REAL", nullable: false),
-                    Price100 = table.Column<double>(type: "REAL", nullable: false),
-                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true)
+                    ProductId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Count = table.Column<int>(type: "INTEGER", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        name: "FK_ShoppingCarts_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -209,21 +261,33 @@ namespace Projekt.Migrations
                 columns: new[] { "Id", "DisplayOrder", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, "Sneakers" },
-                    { 2, 2, "Arbetsskor" },
+                    { 1, 1, "SciFi" },
+                    { 2, 2, "Action" },
                     { 3, 3, "Stövlar" },
-                    { 4, 4, "Fritidsskor" }
+                    { 4, 4, "Fritidsskor" },
+                    { 5, 5, "Dune" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "Id", "City", "Name", "PhoneNumber", "PostalCode", "State", "StreetAddress" },
+                values: new object[,]
+                {
+                    { 2, "Stockholm", "BookWorld", "08-1234567", "12345", "Stockholm", "Läsargatan 5" },
+                    { 3, "Göteborg", "Reader's Haven", "031-7654321", "54321", "Västra Götaland", "Bokvägen 10" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Brand", "CategoryId", "Description", "ImageUrl", "ListPrice", "Price", "Price100", "Price50", "Title" },
+                columns: new[] { "Id", "Author", "CategoryId", "Description", "ImageUrl", "ListPrice", "Price", "Price100", "Price50", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Nike", 1, "Nike Air Force 1 är en legendarisk basketsko som först introducerades 1982 och är känd för att vara den första basketskon som använder Nike Air-teknologin. Denna innovation erbjuder överlägsen dämpning och stöd, vilket har bidragit till skons rykte på basketplanen och dess långvariga popularitet utanför den.", "", 900.0, 1000.0, 700.0, 800.0, "Air Force 1" },
-                    { 2, "Nike", 1, "Nike Blazer Mid '77 fångar den gamla skolans charm av basket med dess vintagestil och klassiska design. Skon har en robust konstruktion med en överdel i läder och mocka, kompletterat med en retro Swoosh-logotyp för en autentisk look. Dess simpla men stiliga utseende har gjort den till en favorit både på och utanför basketplanen.", "", 1000.0, 1100.0, 800.0, 900.0, "Blazer Mid '77" },
-                    { 3, "Adidas", 1, "Adidas Campus är en ikonisk sneaker som ursprungligen lanserades på 1980-talet. Den är känd för sin låga profil, enkla design och hållbarhet, vilket gjort den till en favorit både inom skatekulturen och som en vardagssko.", "", 1149.0, 1249.0, 849.0, 1049.0, "Campus" },
-                    { 4, "Adidas", 1, "Adidas Stan Smith är en tidlös tennissko som först släpptes på 1970-talet. Med sin minimalistiska design och signaturdetaljer som de perforerade tre ränderna och porträttet av Stan Smith på tungan, har denna sko blivit en ikon inom modevärlden. Dess låga profil och enkla estetik gör den till en mångsidig sko som passar till nästan allt.", "", 850.0, 950.0, 650.0, 750.0, "Stan Smith" }
+                    { 1, "Frank Herbert", 1, "Dune är en science fiction-roman skriven av Frank Herbert. Den utspelar sig i en avlägsen framtid där människan har koloniserat flera planeter och strider om kontrollen över en ökenplanet vid namn Arrakis. Boken följer Paul Atreides, en ung adelsman, när han navigerar genom politik, religion och intriger på Arrakis.", "", 90.0, 100.0, 70.0, 80.0, "Dune" },
+                    { 2, "Frank Herbert", 1, "Dune Messiah är uppföljaren till Frank Herberts roman Dune. Boken utforskar konsekvenserna av händelserna i den första boken och följer Paul Atreides, nu känd som Muad'Dib, när han navigerar genom politiska och religiösa utmaningar på Arrakis och i galaxen.", "", 100.0, 110.0, 80.0, 90.0, "Dune Messiah" },
+                    { 3, "Frank Herbert", 1, "Children of Dune är den tredje boken i Frank Herberts Dune-serie. Handlingen kretsar kring Paul Atreides barn, Leto II och Ghanima, när de konfronterar hot från både yttre och inre fiender medan de navigerar genom sin roll i Atreides arv och på Arrakis.", "", 110.0, 120.0, 90.0, 100.0, "Children of Dune" },
+                    { 4, "Frank Herbert", 1, "God Emperor of Dune är den fjärde boken i Frank Herberts Dune-serie. Handlingen äger rum tusentals år efter händelserna i de tidigare böckerna och fokuserar på Leto II, son till Paul Atreides, som nu styr över Arrakis som en gudlik kejsare.", "", 120.0, 130.0, 100.0, 110.0, "God Emperor of Dune" },
+                    { 5, "Frank Herbert", 1, "Heretics of Dune är den femte boken i Frank Herberts Dune-serie. Handlingen följer en grupp rebeller och dissidenter som kämpar mot det etablerade imperiets tyranni och religiösa dogmer på Arrakis och i den omgivande galaxen.", "", 130.0, 140.0, 110.0, 120.0, "Heretics of Dune" },
+                    { 6, "Frank Herbert", 1, "Chapterhouse: Dune är den sjätte och sista boken i Frank Herberts Dune-serie. Handlingen kretsar kring intrigerna och konflikterna mellan olika fraktioner som strävar efter kontroll över det sista återstående exemplaret av den heliga kryddan på planeten Chapterhouse.", "", 140.0, 150.0, 120.0, 130.0, "Chapterhouse: Dune" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -258,6 +322,11 @@ namespace Projekt.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_CompanyId",
+                table: "AspNetUsers",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -267,6 +336,16 @@ namespace Projekt.Migrations
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_ApplicationUserId",
+                table: "ShoppingCarts",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_ProductId",
+                table: "ShoppingCarts",
+                column: "ProductId");
         }
 
         /// <inheritdoc />
@@ -288,13 +367,19 @@ namespace Projekt.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "Categories");

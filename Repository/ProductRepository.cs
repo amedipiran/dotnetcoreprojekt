@@ -24,7 +24,7 @@ namespace Projekt.Repository {
             if(objFromDb != null) {
                 objFromDb.Title = obj.Title;
                 objFromDb.Description = obj.Description;
-                objFromDb.Brand = obj.Brand;
+                objFromDb.Author = obj.Author;
                 objFromDb.Price = obj.Price;
                 objFromDb.ListPrice = obj.ListPrice;
                 objFromDb.Price50 = obj.Price50;

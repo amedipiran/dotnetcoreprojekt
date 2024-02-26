@@ -23,69 +23,91 @@ namespace Projekt.Data
         {
             base.OnModelCreating(modelBuilder); 
 
-            modelBuilder.Entity<Category>().HasData(
-                new Category {Id=1, Name="Sneakers", DisplayOrder=1},
-                new Category {Id=2, Name="Arbetsskor", DisplayOrder=2}, 
-                new Category {Id=3, Name="Stövlar", DisplayOrder=3},
-                new Category {Id=4, Name="Fritidsskor", DisplayOrder=4}
-            );
-              modelBuilder.Entity<Company>().HasData(
-                new Company {Id=2, Name="SneakersNStuff", StreetAddress = "HejsanGatan 6", City = "Stockholm", State = "Stockholm", PostalCode="66666", PhoneNumber="0777777777"},
-                new Company {Id=3, Name="Hejsan", StreetAddress = "Tjorvengatan 6", City = "Stockholm", State = "Stockholm", PostalCode="66666", PhoneNumber="0777777777"}
-            );
+modelBuilder.Entity<Category>().HasData(
+    new Category { Id = 1, Name = "SciFi", DisplayOrder = 1 },
+    new Category { Id = 2, Name = "Action", DisplayOrder = 2 },
+    new Category { Id = 3, Name = "Stövlar", DisplayOrder = 3 },
+    new Category { Id = 4, Name = "Fritidsskor", DisplayOrder = 4 },
+    new Category { Id = 5, Name = "Dune", DisplayOrder = 5 }
+);
+
+modelBuilder.Entity<Company>().HasData(
+    new Company { Id = 2, Name = "BookWorld", StreetAddress = "Läsargatan 5", City = "Stockholm", State = "Stockholm", PostalCode = "12345", PhoneNumber = "08-1234567" },
+    new Company { Id = 3, Name = "Reader's Haven", StreetAddress = "Bokvägen 10", City = "Göteborg", State = "Västra Götaland", PostalCode = "54321", PhoneNumber = "031-7654321" }
+);
+
           modelBuilder.Entity<Product>().HasData(
-    new Product {
-        Id = 1,
-        Title = "Air Force 1",
-        Description = "Nike Air Force 1 är en legendarisk basketsko som först introducerades 1982 och är känd för att vara den första basketskon som använder Nike Air-teknologin. Denna innovation erbjuder överlägsen dämpning och stöd, vilket har bidragit till skons rykte på basketplanen och dess långvariga popularitet utanför den.",
-        Brand = "Nike",
-        Price = 1000, 
-        ListPrice = 900,
-        Price50 = 800,
-        Price100 = 700,
-        CategoryId = 1,
-        ImageUrl = ""
-
-    },
-    new Product {
-    Id = 2,
-    Title = "Blazer Mid '77",
-    Description = "Nike Blazer Mid '77 fångar den gamla skolans charm av basket med dess vintagestil och klassiska design. Skon har en robust konstruktion med en överdel i läder och mocka, kompletterat med en retro Swoosh-logotyp för en autentisk look. Dess simpla men stiliga utseende har gjort den till en favorit både på och utanför basketplanen.",
-    Brand = "Nike",
-    Price = 1100,
-    ListPrice = 1000,
-    Price50 = 900,
-    Price100 = 800,
-        CategoryId = 1,
-        ImageUrl = ""
-
-
+ new Product {
+    Id = 1,
+    Title = "Dune",
+    Description = "Dune är en science fiction-roman skriven av Frank Herbert. Den utspelar sig i en avlägsen framtid där människan har koloniserat flera planeter och strider om kontrollen över en ökenplanet vid namn Arrakis. Boken följer Paul Atreides, en ung adelsman, när han navigerar genom politik, religion och intriger på Arrakis.",
+    Author = "Frank Herbert",
+    Price = 100, 
+    ListPrice = 90,
+    Price50 = 80,
+    Price100 = 70,
+    CategoryId = 1,
+    ImageUrl = ""
 },
-
-    new Product {
-        Id = 3,
-        Title = "Campus",
-        Description = "Adidas Campus är en ikonisk sneaker som ursprungligen lanserades på 1980-talet. Den är känd för sin låga profil, enkla design och hållbarhet, vilket gjort den till en favorit både inom skatekulturen och som en vardagssko.",
-        Brand = "Adidas",
-        Price = 1249, 
-        ListPrice = 1149,
-        Price50 = 1049,
-        Price100 = 849,
-        CategoryId = 1,
-        ImageUrl = ""
-
-    },
-    new Product {
+new Product {
+    Id = 2,
+    Title = "Dune Messiah",
+    Description = "Dune Messiah är uppföljaren till Frank Herberts roman Dune. Boken utforskar konsekvenserna av händelserna i den första boken och följer Paul Atreides, nu känd som Muad'Dib, när han navigerar genom politiska och religiösa utmaningar på Arrakis och i galaxen.",
+    Author = "Frank Herbert",
+    Price = 110,
+    ListPrice = 100,
+    Price50 = 90,
+    Price100 = 80,
+    CategoryId = 1,
+    ImageUrl = ""
+},
+new Product {
+    Id = 3,
+    Title = "Children of Dune",
+    Description = "Children of Dune är den tredje boken i Frank Herberts Dune-serie. Handlingen kretsar kring Paul Atreides barn, Leto II och Ghanima, när de konfronterar hot från både yttre och inre fiender medan de navigerar genom sin roll i Atreides arv och på Arrakis.",
+    Author = "Frank Herbert",
+    Price = 120,
+    ListPrice = 110,
+    Price50 = 100,
+    Price100 = 90,
+    CategoryId = 1,
+    ImageUrl = ""
+},
+new Product {
     Id = 4,
-    Title = "Stan Smith",
-    Description = "Adidas Stan Smith är en tidlös tennissko som först släpptes på 1970-talet. Med sin minimalistiska design och signaturdetaljer som de perforerade tre ränderna och porträttet av Stan Smith på tungan, har denna sko blivit en ikon inom modevärlden. Dess låga profil och enkla estetik gör den till en mångsidig sko som passar till nästan allt.",
-    Brand = "Adidas",
-    Price = 950,
-    ListPrice = 850,
-    Price50 = 750,
-    Price100 = 650,
-        CategoryId = 1,
-        ImageUrl = ""
+    Title = "God Emperor of Dune",
+    Description = "God Emperor of Dune är den fjärde boken i Frank Herberts Dune-serie. Handlingen äger rum tusentals år efter händelserna i de tidigare böckerna och fokuserar på Leto II, son till Paul Atreides, som nu styr över Arrakis som en gudlik kejsare.",
+    Author = "Frank Herbert",
+    Price = 130,
+    ListPrice = 120,
+    Price50 = 110,
+    Price100 = 100,
+    CategoryId = 1,
+    ImageUrl = ""
+},
+new Product {
+    Id = 5,
+    Title = "Heretics of Dune",
+    Description = "Heretics of Dune är den femte boken i Frank Herberts Dune-serie. Handlingen följer en grupp rebeller och dissidenter som kämpar mot det etablerade imperiets tyranni och religiösa dogmer på Arrakis och i den omgivande galaxen.",
+    Author = "Frank Herbert",
+    Price = 140,
+    ListPrice = 130,
+    Price50 = 120,
+    Price100 = 110,
+    CategoryId = 1,
+    ImageUrl = ""
+},
+new Product {
+    Id = 6,
+    Title = "Chapterhouse: Dune",
+    Description = "Chapterhouse: Dune är den sjätte och sista boken i Frank Herberts Dune-serie. Handlingen kretsar kring intrigerna och konflikterna mellan olika fraktioner som strävar efter kontroll över det sista återstående exemplaret av den heliga kryddan på planeten Chapterhouse.",
+    Author = "Frank Herbert",
+    Price = 150,
+    ListPrice = 140,
+    Price50 = 130,
+    Price100 = 120,
+    CategoryId = 1,
+    ImageUrl = ""
 
 
 });

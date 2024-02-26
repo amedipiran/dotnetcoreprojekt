@@ -241,13 +241,13 @@ namespace Projekt.Migrations
                         {
                             Id = 1,
                             DisplayOrder = 1,
-                            Name = "Sneakers"
+                            Name = "SciFi"
                         },
                         new
                         {
                             Id = 2,
                             DisplayOrder = 2,
-                            Name = "Arbetsskor"
+                            Name = "Action"
                         },
                         new
                         {
@@ -260,6 +260,12 @@ namespace Projekt.Migrations
                             Id = 4,
                             DisplayOrder = 4,
                             Name = "Fritidsskor"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplayOrder = 5,
+                            Name = "Dune"
                         });
                 });
 
@@ -297,21 +303,21 @@ namespace Projekt.Migrations
                         {
                             Id = 2,
                             City = "Stockholm",
-                            Name = "SneakersNStuff",
-                            PhoneNumber = "0777777777",
-                            PostalCode = "66666",
+                            Name = "BookWorld",
+                            PhoneNumber = "08-1234567",
+                            PostalCode = "12345",
                             State = "Stockholm",
-                            StreetAddress = "HejsanGatan 6"
+                            StreetAddress = "Läsargatan 5"
                         },
                         new
                         {
                             Id = 3,
-                            City = "Stockholm",
-                            Name = "Hejsan",
-                            PhoneNumber = "0777777777",
-                            PostalCode = "66666",
-                            State = "Stockholm",
-                            StreetAddress = "Tjorvengatan 6"
+                            City = "Göteborg",
+                            Name = "Reader's Haven",
+                            PhoneNumber = "031-7654321",
+                            PostalCode = "54321",
+                            State = "Västra Götaland",
+                            StreetAddress = "Bokvägen 10"
                         });
                 });
 
@@ -321,7 +327,7 @@ namespace Projekt.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Brand")
+                    b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -365,54 +371,80 @@ namespace Projekt.Migrations
                         new
                         {
                             Id = 1,
-                            Brand = "Nike",
+                            Author = "Frank Herbert",
                             CategoryId = 1,
-                            Description = "Nike Air Force 1 är en legendarisk basketsko som först introducerades 1982 och är känd för att vara den första basketskon som använder Nike Air-teknologin. Denna innovation erbjuder överlägsen dämpning och stöd, vilket har bidragit till skons rykte på basketplanen och dess långvariga popularitet utanför den.",
+                            Description = "Dune är en science fiction-roman skriven av Frank Herbert. Den utspelar sig i en avlägsen framtid där människan har koloniserat flera planeter och strider om kontrollen över en ökenplanet vid namn Arrakis. Boken följer Paul Atreides, en ung adelsman, när han navigerar genom politik, religion och intriger på Arrakis.",
                             ImageUrl = "",
-                            ListPrice = 900.0,
-                            Price = 1000.0,
-                            Price100 = 700.0,
-                            Price50 = 800.0,
-                            Title = "Air Force 1"
+                            ListPrice = 90.0,
+                            Price = 100.0,
+                            Price100 = 70.0,
+                            Price50 = 80.0,
+                            Title = "Dune"
                         },
                         new
                         {
                             Id = 2,
-                            Brand = "Nike",
+                            Author = "Frank Herbert",
                             CategoryId = 1,
-                            Description = "Nike Blazer Mid '77 fångar den gamla skolans charm av basket med dess vintagestil och klassiska design. Skon har en robust konstruktion med en överdel i läder och mocka, kompletterat med en retro Swoosh-logotyp för en autentisk look. Dess simpla men stiliga utseende har gjort den till en favorit både på och utanför basketplanen.",
+                            Description = "Dune Messiah är uppföljaren till Frank Herberts roman Dune. Boken utforskar konsekvenserna av händelserna i den första boken och följer Paul Atreides, nu känd som Muad'Dib, när han navigerar genom politiska och religiösa utmaningar på Arrakis och i galaxen.",
                             ImageUrl = "",
-                            ListPrice = 1000.0,
-                            Price = 1100.0,
-                            Price100 = 800.0,
-                            Price50 = 900.0,
-                            Title = "Blazer Mid '77"
+                            ListPrice = 100.0,
+                            Price = 110.0,
+                            Price100 = 80.0,
+                            Price50 = 90.0,
+                            Title = "Dune Messiah"
                         },
                         new
                         {
                             Id = 3,
-                            Brand = "Adidas",
+                            Author = "Frank Herbert",
                             CategoryId = 1,
-                            Description = "Adidas Campus är en ikonisk sneaker som ursprungligen lanserades på 1980-talet. Den är känd för sin låga profil, enkla design och hållbarhet, vilket gjort den till en favorit både inom skatekulturen och som en vardagssko.",
+                            Description = "Children of Dune är den tredje boken i Frank Herberts Dune-serie. Handlingen kretsar kring Paul Atreides barn, Leto II och Ghanima, när de konfronterar hot från både yttre och inre fiender medan de navigerar genom sin roll i Atreides arv och på Arrakis.",
                             ImageUrl = "",
-                            ListPrice = 1149.0,
-                            Price = 1249.0,
-                            Price100 = 849.0,
-                            Price50 = 1049.0,
-                            Title = "Campus"
+                            ListPrice = 110.0,
+                            Price = 120.0,
+                            Price100 = 90.0,
+                            Price50 = 100.0,
+                            Title = "Children of Dune"
                         },
                         new
                         {
                             Id = 4,
-                            Brand = "Adidas",
+                            Author = "Frank Herbert",
                             CategoryId = 1,
-                            Description = "Adidas Stan Smith är en tidlös tennissko som först släpptes på 1970-talet. Med sin minimalistiska design och signaturdetaljer som de perforerade tre ränderna och porträttet av Stan Smith på tungan, har denna sko blivit en ikon inom modevärlden. Dess låga profil och enkla estetik gör den till en mångsidig sko som passar till nästan allt.",
+                            Description = "God Emperor of Dune är den fjärde boken i Frank Herberts Dune-serie. Handlingen äger rum tusentals år efter händelserna i de tidigare böckerna och fokuserar på Leto II, son till Paul Atreides, som nu styr över Arrakis som en gudlik kejsare.",
                             ImageUrl = "",
-                            ListPrice = 850.0,
-                            Price = 950.0,
-                            Price100 = 650.0,
-                            Price50 = 750.0,
-                            Title = "Stan Smith"
+                            ListPrice = 120.0,
+                            Price = 130.0,
+                            Price100 = 100.0,
+                            Price50 = 110.0,
+                            Title = "God Emperor of Dune"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "Frank Herbert",
+                            CategoryId = 1,
+                            Description = "Heretics of Dune är den femte boken i Frank Herberts Dune-serie. Handlingen följer en grupp rebeller och dissidenter som kämpar mot det etablerade imperiets tyranni och religiösa dogmer på Arrakis och i den omgivande galaxen.",
+                            ImageUrl = "",
+                            ListPrice = 130.0,
+                            Price = 140.0,
+                            Price100 = 110.0,
+                            Price50 = 120.0,
+                            Title = "Heretics of Dune"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Author = "Frank Herbert",
+                            CategoryId = 1,
+                            Description = "Chapterhouse: Dune är den sjätte och sista boken i Frank Herberts Dune-serie. Handlingen kretsar kring intrigerna och konflikterna mellan olika fraktioner som strävar efter kontroll över det sista återstående exemplaret av den heliga kryddan på planeten Chapterhouse.",
+                            ImageUrl = "",
+                            ListPrice = 140.0,
+                            Price = 150.0,
+                            Price100 = 120.0,
+                            Price50 = 130.0,
+                            Title = "Chapterhouse: Dune"
                         });
                 });
 

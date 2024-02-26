@@ -18,8 +18,8 @@ namespace Projekt.Models {
         
     [Required(ErrorMessage = "Fältet \"Titel\" är obligatoriskt.")]
             public string? Description { get; set;}
-        [Required(ErrorMessage = "Fältet \"Märke\" är obligatoriskt.")]
-    public string? Brand { get; set;}
+        [Required(ErrorMessage = "Fältet \"Författare\" är obligatoriskt.")]
+    public string? Author { get; set;}
 
  [Required]
  [Display(Name = "Pris")]

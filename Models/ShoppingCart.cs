@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Identity;
 
-
 namespace Projekt.Models {
     public class ShoppingCart  {
         public int Id {get; set;}
@@ -21,10 +20,9 @@ namespace Projekt.Models {
         [Range(1,100, ErrorMessage = "Vänligen välj ett antal mellan 1 och 100.")]
         public int Count {get; set;}
         public string ApplicationUserId {get; set;}
-          [ForeignKey("ApplicationUserId")]
+        [ForeignKey("ApplicationUserId")]
         [ValidateNever]
         public ApplicationUser ApplicationUser {get; set;}
-
 
 
     }
