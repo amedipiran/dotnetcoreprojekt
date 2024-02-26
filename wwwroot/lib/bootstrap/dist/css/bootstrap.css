@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 The Bootstrap brands
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
@@ -3982,7 +3982,7 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
 }
-.navbar-Author {
+.navbar-brand {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 1rem;
@@ -4371,10 +4371,10 @@ textarea.form-control-lg {
   overflow-y: visible;
 }
 
-.navbar-light .navbar-Author {
+.navbar-light .navbar-brand {
   color: rgba(0, 0, 0, 0.9);
 }
-.navbar-light .navbar-Author:hover, .navbar-light .navbar-Author:focus {
+.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
   color: rgba(0, 0, 0, 0.9);
 }
 .navbar-light .navbar-nav .nav-link {
@@ -4406,10 +4406,10 @@ textarea.form-control-lg {
   color: rgba(0, 0, 0, 0.9);
 }
 
-.navbar-dark .navbar-Author {
+.navbar-dark .navbar-brand {
   color: #fff;
 }
-.navbar-dark .navbar-Author:hover, .navbar-dark .navbar-Author:focus {
+.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
   color: #fff;
 }
 .navbar-dark .navbar-nav .nav-link {
