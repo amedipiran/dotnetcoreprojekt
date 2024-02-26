@@ -27,17 +27,28 @@ namespace Projekt.Repository {
 
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
-           IQueryable<T> query = dbSet;
+     IQueryable<T> query;
+
+            if(tracked) {
+           
+           query = dbSet;
+
+           return query.FirstOrDefault();
+            } else {
+                 query = dbSet.AsNoTracking();
+            }
+           query = query.Where(filter);
                if(!string.IsNullOrEmpty(includeProperties)){
                     foreach(var includeProp in includeProperties.Split(new char[]{','},StringSplitOptions.RemoveEmptyEntries)){
                       query = query.Include(includeProp);  
                     }
                 }
-           query = query.Where(filter);
 
            return query.FirstOrDefault();
+            
+      
         }
 
         //Inkluderar referenser till kategori ex. 

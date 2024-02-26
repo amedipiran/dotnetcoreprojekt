@@ -43,7 +43,7 @@ public IActionResult Details(ShoppingCart shoppingCart)
     if (cartFromDb != null) {
         //shopping cart exists
         cartFromDb.Count += shoppingCart.Count;
-        _unitOfWork.ShoppingCart.Update(cartFromDb);
+       _unitOfWork.ShoppingCart.Update(cartFromDb);
         _unitOfWork.Save();
     }
     else {
