@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Projekt.Models;
 using Projekt.Repository;
@@ -24,12 +26,29 @@ public class HomeController : Controller
         return View(productList);
     }
 
-        public IActionResult Details(int id)
-    {
-        Product product = _unitOfWork.Product.Get(u=>u.Id == id, includeProperties: "Category");
-        return View(product);
-    }
+public IActionResult Details(int id)
+{
+    ShoppingCart cart = new() {
+        Product = _unitOfWork.Product.Get(u => u.Id == id, includeProperties: "Category"),
+        Count = 1,
+        ProductId = id 
+    };
+    return View(cart);
+}
+     [HttpPost]
+     [Authorize]
+   public IActionResult Details(ShoppingCart shoppingCart) 
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId= userId;
 
+            _unitOfWork.ShoppingCart.Add(shoppingCart);
+            _unitOfWork.Save();
+
+
+            return RedirectToAction(nameof(Index));
+        }
     public IActionResult Privacy()
     {
         return View();

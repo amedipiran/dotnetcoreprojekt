@@ -19,11 +19,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultDbString")));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
 
-builder.Services.ConfigureApplicationCookie(options=> {
-    options.LoginPath = $"/Identity/Account/Login";
-    options.LoginPath = $"/Identity/Account/Logout";
-    options.LoginPath = $"/Identity/Account/AccessDenied";
-
+builder.Services.ConfigureApplicationCookie(options => {
+    options.LoginPath = $"/Identity/Account/Login"; 
+    options.LogoutPath = $"/Identity/Account/Logout"; 
+    options.AccessDeniedPath = $"/Identity/Account/Login"; 
 });
 
 builder.Services.AddRazorPages();
