@@ -26,10 +26,10 @@ namespace Projekt.Data
 modelBuilder.Entity<Category>().HasData(
     new Category { Id = 1, Name = "SciFi", DisplayOrder = 1 },
     new Category { Id = 2, Name = "Action", DisplayOrder = 2 },
-    new Category { Id = 3, Name = "Stövlar", DisplayOrder = 3 },
-    new Category { Id = 4, Name = "Fritidsskor", DisplayOrder = 4 },
-    new Category { Id = 5, Name = "Dune", DisplayOrder = 5 }
+    new Category { Id = 3, Name = "Romantik", DisplayOrder = 3 },
+    new Category { Id = 4, Name = "Deckare", DisplayOrder = 4 }
 );
+
 
 modelBuilder.Entity<Company>().HasData(
     new Company { Id = 2, Name = "BookWorld", StreetAddress = "Läsargatan 5", City = "Stockholm", State = "Stockholm", PostalCode = "12345", PhoneNumber = "08-1234567" },

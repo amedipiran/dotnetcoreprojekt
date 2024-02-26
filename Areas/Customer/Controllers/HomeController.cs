@@ -51,7 +51,7 @@ public IActionResult Details(ShoppingCart shoppingCart)
         _unitOfWork.ShoppingCart.Add(shoppingCart);
         _unitOfWork.Save();
     }
-    TempData["success"] = "Cart updated successfully";
+    TempData["success"] = "Kundvagnen uppdaterades.";
 
     return RedirectToAction(nameof(Index));
 }
