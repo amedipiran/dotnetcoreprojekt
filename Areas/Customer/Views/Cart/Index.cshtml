@@ -1,3 +1,4 @@
+@model ShoppingCartVM
 
 <form method="post">
     <div class="card shadow border-0">
@@ -10,45 +11,50 @@
         </div>
         <div class="card-body">
             <div class="mb-3 d-flex justify-content-start">
-                <a href="#" class="btn btn-outline-primary fw-semibold">Fortsätt handla</a>
+                <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-primary fw-semibold">Fortsätt handla</a>
             </div>
-            <div class="row">
-                <!-- Produktinformation och bild -->
-                <div class="col-12 col-lg-4 text-center">
-                    <img src="https://placehold.co/600x400" class="img-fluid rounded" alt="Produktbild">
-                </div>
-                <div class="col-12 col-lg-8">
-                    <div class="row border-bottom pb-3 mb-3">
-                        <div class="col-12">
-                            <h5 class="text-uppercase"><strong>Produkttitel</strong></h5>
-                            <p><small>Produktbeskrivning</small></p>
-                        </div>
-                        <div class="col-12 d-flex justify-content-between">
-                            <h6 class="fw-semibold">
-                                Pris <span class="text-muted">&nbsp;x&nbsp;</span>Antal
-                            </h6>
-                            <div class="btn-group" role="group">
-                                <a class="btn btn-outline-primary bg-gradient">
-                                    <i class="bi bi-plus-square"></i>
-                                </a>
-                                <a class="btn btn-outline-primary bg-gradient">
-                                    <i class="bi bi-dash-square"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger bg-gradient">
-                                    <i class="bi bi-trash-fill"></i>
-                                </a>
+            @foreach(var item in Model.ShoppingCartList)
+            {
+                <div class="row mt-4">
+                    <!-- Produktinformation och bild -->
+                    <div class="col-12 col-lg-4 text-center pb-3">
+                        <img src="@item.Product.ImageUrl" class="img-fluid w-25 rounded" alt="Produktbild">
+
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <div class="row border-bottom pb-3 mb-3">
+                            <div class="col-12">
+                                <h5 class="text-uppercase"><strong>@item.Product.Title</strong></h5>
+                                <p><small>@Html.Raw(@item.Product.Description)</small></p>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between">
+                                <h6 class="fw-semibold">
+                                    @item.Price kr<span class="text-muted">&nbsp;x&nbsp;</span>@item.Count
+                                </h6>
+                                <div class="btn-group" role="group">
+                                    <a asp-action="plus"  asp-route-cartId="@item.Id" class="btn btn-outline-primary bg-gradient">
+                                        <i class="bi bi-plus-square"></i>
+                                    </a>
+                                    <a asp-route-cartId="@item.Id"  asp-action="minus" class="btn btn-outline-primary bg-gradient">
+                                        <i class="bi bi-dash-square"></i>
+                                    </a>
+                                    <a asp-route-cartId="@item.Id"  asp-action="remove" class="btn btn-danger bg-gradient">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+
             <div class="card-footer bg-white border-0">
                 <div class="row">
                     <div class="col-md-4 offset-md-4">
                         <ul class="list-group mb-4">
                             <li class="d-flex justify-content-between align-items-center">
                                 <h5 class="text-dark fw-semibold text-uppercase">Totalt (SEK)</h5>
-                                <h4 class="text-dark fw-bolder">kr</h4>
+                                <h4 class="text-dark fw-bolder">@Model.OrderTotal.ToString() kr</h4>
                             </li>
                         </ul>
                         <a href="#" class="btn btn-primary my-gradient-btn bg-gradient w-100 py-2">Sammanfattning</a>

@@ -24,6 +24,9 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
+.small-image-wrapper {
+  max-width: 100px; 
+}
 
 
 @media screen and (max-width: 600px) {
