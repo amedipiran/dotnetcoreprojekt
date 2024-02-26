@@ -47,11 +47,13 @@ public IActionResult Upsert(Company CompanyObj) {
        
         if (CompanyObj.Id == 0) {
             _unitOfWork.Company.Add(CompanyObj);
+            TempData["Success"] = "Företag skapat.";
         } else {
             _unitOfWork.Company.Update(CompanyObj);
+            TempData["Success"] = "Företag uppdaterat.";
         }
         _unitOfWork.Save();
-        TempData["Success"] = "Företag skapat";
+        
         return RedirectToAction("Index");
     } else {
 

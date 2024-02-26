@@ -80,7 +80,7 @@ public IActionResult Upsert(ProductVM productVM, IFormFile? file) {
             _unitOfWork.Product.Update(productVM.Product);
         }
         _unitOfWork.Save();
-        TempData["Success"] = message; // Använd TempData för att skicka meddelandet till nästa request
+        TempData["Success"] = message; 
         return RedirectToAction("Index");
     } else {
         productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem {

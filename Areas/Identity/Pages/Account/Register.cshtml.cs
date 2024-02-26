@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Projekt.Models;
+using Projekt.Repository.IRepository;
 using Projekt.Utility;
 
 namespace Projekt.Areas.Identity.Pages.Account
@@ -34,6 +35,8 @@ namespace Projekt.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IUnitOfWork _unitOfWork;
+
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -41,7 +44,8 @@ namespace Projekt.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -50,6 +54,7 @@ namespace Projekt.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -114,6 +119,9 @@ namespace Projekt.Areas.Identity.Pages.Account
             public string? State { get; set; }
             public string? PostalCode { get; set; }
             public string? PhoneNumber { get; set; }
+            public int? CompanyId { get; set; }
+            public IEnumerable<SelectListItem> CompanyList { get; set; }
+
 
 
         }
@@ -133,6 +141,10 @@ namespace Projekt.Areas.Identity.Pages.Account
                 RoleList = _roleManager.Roles.Select(x=>x.Name).Select(i=> new SelectListItem {
                     Text =i,
                     Value=i 
+                }),
+                  CompanyList = _unitOfWork.Company.GetAll().Select(i=> new SelectListItem {
+                    Text =i.Name,
+                    Value=i.Id.ToString() 
                 })
             };
             ReturnUrl = returnUrl;
