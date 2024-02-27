@@ -9,9 +9,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace Projekt.Models.ViewModels {
-public class ShoppingCartVM {
-    public IEnumerable<ShoppingCart> ShoppingCartList {get; set;}
-    public double OrderTotal {get; set;}
-}
+namespace Projekt.Models.ViewModels
+{
+    public class ShoppingCartVM
+    {
+        public IEnumerable<ShoppingCart> ShoppingCartList { get; set; }
+
+        public OrderHeader OrderHeader { get; set; }
+
+    }
 }
