@@ -12,18 +12,18 @@ using Projekt.Repository.IRepository;
 
 namespace Projekt.Repository
 {
-    public class OrderDetailRepository : Repository<OrderDetail>, IOrderDetailRepository
+    public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderRepository
     {
         private ApplicationDbContext _db;
-        public OrderDetailRepository(ApplicationDbContext db) : base(db)
+        public OrderHeaderRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(OrderDetail obj)
+        public void Update(OrderHeader obj)
         {
 
-            _db.OrderDetails.Update(obj);
+            _db.OrderHeaders.Update(obj);
 
         }
 
