@@ -1,11 +1,35 @@
 <div class="container">
 <div class="row pt-4 pb-3">
-    <div class="col-6">
+
 <h2 class="">
     Orderlista
 </h2>
 
+<div class="d-flex justify-content-between pb-5 pt-2 w-100">
+    <span></span>
+    <ul class="list-group list-group-horizontal-sm">
+        <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
+            <li class="list-group-item">Bearbetas</li>
+        </a>
 
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
+            <li class="list-group-item">Betalning väntande</li>
+        </a>
+
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
+            <li class="list-group-item">Betalning genomförd</li>
+        </a>
+
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
+            <li class="list-group-item">Godkänd</li>
+        </a>
+
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
+            <li class="list-group-item">Alla</li>
+        </a>
+    </ul>
+
+</div>
 <table id="tblData" class="table table-bordered table-striped table-scroll">
     <thead>
     <tr>

@@ -13,7 +13,7 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg bg-primary mb-4" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-xxl bg-primary mb-4" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Book Sanctuary</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent"
@@ -26,7 +26,7 @@
                         <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> Hem</a>
                     </li>
                       <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-house"></i>Hantera Beställningar</a>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-card-list"></i> Beställningar</a>
                     </li>
                     @*@if(User.IsInRole(SD.Role_Admin)) {
                     *@
@@ -43,7 +43,7 @@
                     @*
                     }*@
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index"><i class="bi bi-basket"></i> &nbsp; </a>
+                        <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index"><i class="bi bi-cart-fill"></i> &nbsp; (0) Kundvagn</a>
                     </li>
 
                 </ul>
