@@ -44,25 +44,36 @@ namespace Projekt.Areas.Customer.Controllers
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             shoppingCart.ApplicationUserId = userId;
 
-            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.Product.Id == shoppingCart.ProductId);
+            // Skapa en ny instans av ShoppingCart där ProductId sätts korrekt
+            ShoppingCart newShoppingCart = new ShoppingCart
+            {
+                ProductId = shoppingCart.ProductId, // Sätt rätt ProductId här
+                Count = shoppingCart.Count,
+                ApplicationUserId = shoppingCart.ApplicationUserId
+            };
+
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(
+                u => u.ApplicationUserId == userId && u.ProductId == newShoppingCart.ProductId);
 
             if (cartFromDb != null)
             {
-                //shopping cart exists
+                // Ändra befintlig kundvagn om den finns
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
-                _unitOfWork.Save();
             }
             else
             {
-                //add cart record
-                _unitOfWork.ShoppingCart.Add(shoppingCart);
-                _unitOfWork.Save();
+                // Lägg till ny kundvagnspost om ingen befintlig kundvagn hittades
+                _unitOfWork.ShoppingCart.Add(newShoppingCart);
             }
-            TempData["success"] = "Kundvagnen uppdaterades.";
 
+            // Spara ändringar i databasen
+            _unitOfWork.Save();
+
+            TempData["success"] = "Kundvagnen uppdaterades.";
             return RedirectToAction(nameof(Index));
         }
+
 
 
 
