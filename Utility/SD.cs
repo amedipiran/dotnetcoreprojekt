@@ -14,17 +14,17 @@ namespace Projekt.Utility
         public const string Role_Admin = "Admin";
         public const string Role_Employee = "Anställd";
 
-        public const string StatusPending = "Pending";
-        public const string StatusApproved = "Approved";
-        public const string StatusInProcess = "Processing";
-        public const string StatusShipped = "Shipped";
-        public const string StatusCancelled = "Cancelled";
-        public const string StatusRefunded = "Refunded";
+        public const string StatusPending = "Väntande";
+        public const string StatusApproved = "Godkänd";
+        public const string StatusInProcess = "Bearbetar";
+        public const string StatusShipped = "Skickad";
+        public const string StatusCancelled = "Avbruten";
+        public const string StatusRefunded = "Återbetald";
 
-        public const string PaymentStatusPending = "Pending";
-        public const string PaymentStatusApproved = "Approved";
+        public const string PaymentStatusPending = "Väntande";
+        public const string PaymentStatusApproved = "Godkänd";
         public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
-        public const string PaymentStatusRejected = "Rejected";
+        public const string PaymentStatusRejected = "Avvisad";
 
 
 
