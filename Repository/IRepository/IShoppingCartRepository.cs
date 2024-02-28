@@ -6,10 +6,12 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projekt.Repository.IRepository {
-    public interface IShoppingCartRepository : IRepository<ShoppingCart> {
+namespace Projekt.Repository.IRepository
+{
+    public interface IShoppingCartRepository : IRepository<ShoppingCart>
+    {
 
         void Update(ShoppingCart obj);
- 
+
     }
 }

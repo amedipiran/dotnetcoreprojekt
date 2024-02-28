@@ -10,15 +10,18 @@ using Projekt.Data;
 using Projekt.Models;
 using Projekt.Repository.IRepository;
 
-namespace Projekt.Repository {
+namespace Projekt.Repository
+{
     public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
     {
         private ApplicationDbContext _db;
-        public ShoppingCartRepository(ApplicationDbContext db) : base(db){
+        public ShoppingCartRepository(ApplicationDbContext db) : base(db)
+        {
             _db = db;
         }
 
-        public void Update(ShoppingCart obj) {
+        public void Update(ShoppingCart obj)
+        {
 
             _db.ShoppingCarts.Update(obj);
 
@@ -26,5 +29,5 @@ namespace Projekt.Repository {
 
     }
 
-   
+
 }
