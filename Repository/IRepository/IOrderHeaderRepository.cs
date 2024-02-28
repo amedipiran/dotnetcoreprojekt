@@ -12,6 +12,9 @@ namespace Projekt.Repository.IRepository
     {
 
         void Update(OrderHeader obj);
+        void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
+        void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId);
+
 
     }
 }

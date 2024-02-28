@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projekt.Data;
 
@@ -10,9 +11,11 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240228123904_AddSessionIDtoOrderHeader")]
+    partial class AddSessionIDtoOrderHeader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -375,10 +378,10 @@ namespace Projekt.Migrations
                     b.Property<double>("OrderTotal")
                         .HasColumnType("REAL");
 
-                    b.Property<DateTime>("PaymentDate")
+                    b.Property<DateTime>("PaymenDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly>("PaymentDueDate")
+                    b.Property<DateOnly>("PaymenDueDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PaymentIntentId")

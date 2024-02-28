@@ -32,9 +32,10 @@ namespace Projekt.Models
         public string? TrackingNumber { get; set; }
         public string? Carrier { get; set; }
 
-        public DateTime PaymenDate { get; set; }
-        public DateOnly PaymenDueDate { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public DateOnly PaymentDueDate { get; set; }
 
+        public string? SessionId { get; set; }
         public string? PaymentIntentId { get; set; }
 
         [Required]
