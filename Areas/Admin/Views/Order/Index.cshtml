@@ -1,3 +1,31 @@
+@{
+    var status = Context.Request.Query["status"];
+    var inprocess = "text-primary";
+    var pending = "text-primary";
+    var completed = "text-primary";
+    var approved = "text-primary";
+    var all = "text-primary";
+
+    switch(status) {
+        case "pending":
+        pending="active text-white bg-primary";
+        break;
+          case "inprocess":
+        inprocess="active text-white bg-primary";
+        break;
+          case "completed":
+        completed="active text-white bg-primary";
+        break;
+          case "approved":
+        approved="active text-white bg-primary";
+        break;
+          default:
+        all="active text-white bg-primary";
+        break;
+    }
+
+}
+
 <div class="container">
 <div class="row pt-4 pb-3">
 
@@ -9,23 +37,23 @@
     <span></span>
     <ul class="list-group list-group-horizontal-sm">
         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
-            <li class="list-group-item">Bearbetas</li>
+            <li class="list-group-item @inprocess">Bearbetas</li>
         </a>
 
-         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
-            <li class="list-group-item">Betalning väntande</li>
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="pending">
+            <li class="list-group-item @pending">Betalning väntande</li>
         </a>
 
-         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
-            <li class="list-group-item">Betalning genomförd</li>
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="completed">
+            <li class="list-group-item @completed">Betalning genomförd</li>
         </a>
 
-         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
-            <li class="list-group-item">Godkänd</li>
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="approved">
+            <li class="list-group-item @approved">Godkänd</li>
         </a>
 
-         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="inprocess">
-            <li class="list-group-item">Alla</li>
+         <a style="text-decoration: none;" asp-controller="Order" asp-action="index" asp-route-status="all">
+            <li class="list-group-item @all">Alla</li>
         </a>
     </ul>
 
