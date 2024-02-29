@@ -14,7 +14,7 @@ namespace Projekt.Models.ViewModels
 {
     public class OrderVM
     {
-        public IEnumerable<Order> OrderDetail { get; set; }
+        public IEnumerable<OrderDetail> OrderDetail { get; set; }
 
         public OrderHeader OrderHeader { get; set; }
 
