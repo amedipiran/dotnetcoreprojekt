@@ -25,6 +25,7 @@ namespace Projekt.Models
 
         public DateTime OrderDate { get; set; }
         public DateTime OrderShipped { get; set; }
+        public DateTime ShippingDate { get; set; }
         public double OrderTotal { get; set; }
 
         public string? OrderStatus { get; set; }
@@ -34,6 +35,7 @@ namespace Projekt.Models
 
         public DateTime PaymentDate { get; set; }
         public DateOnly PaymentDueDate { get; set; }
+        
 
         public string? SessionId { get; set; }
         public string? PaymentIntentId { get; set; }

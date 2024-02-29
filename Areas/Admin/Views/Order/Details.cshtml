@@ -9,7 +9,8 @@
                         <i class="fas fa-shopping-cart"></i> &nbsp; Ordersammanfattning
                     </div>
                     <div class="col-12 col-md-4 offset-md-2 text-right">
-                        <a asp-action="index" class="btn btn-outline-info form-control btn-sm">Tillbaka till Beställningar</a>
+                        <a asp-action="index" class="btn btn-outline-info form-control btn-sm">Tillbaka till
+                            Beställningar</a>
                     </div>
                 </div>
             </div>
@@ -25,118 +26,200 @@
                             <div class="row my-1">
                                 <div class="col-4">Namn</div>
                                 <div class="col-8">
-                                    @if(User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)){
-                                    
-                                    <input asp-for="OrderHeader.Name" type="text" class="form-control" />
-                                    <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
-                                    } else {
+                                    @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
 
-                                   <input readonly asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.Name" type="text" class="form-control" />
                                     }
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Telefon</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
+                                    @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
+
+                                        <input asp-for="OrderHeader.PhoneNumber" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.PhoneNumber" type="text"
+                                            class="form-control" />
+                                    }
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Adress</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
+                                    @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
+
+                                        <input asp-for="OrderHeader.StreetAddress" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.StreetAddress" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.StreetAddress" type="text"
+                                            class="form-control" />
+                                    }
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Stad</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
+                                    @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
+
+                                        <input asp-for="OrderHeader.City" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.City" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.City" type="text" class="form-control" />
+                                    }
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Län</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
+                                          @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
+
+                                        <input asp-for="OrderHeader.State" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.State" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.State" type="text" class="form-control" />
+                                    }
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Postnummer</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
+                                                  @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
+
+                                        <input asp-for="OrderHeader.PostalCode" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.PostalCode" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.PostalCode" type="text" class="form-control" />
+                                    }
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">E-post</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
-                                </div>
+              
+                                
+                                        <input readonly asp-for="OrderHeader.ApplicationUser.Email" type="text" class="form-control" />
+                                                               </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Orderdatum</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
-                                </div>
+             
+                                    
+                                    <input readonly type="text" class="form-control" value="@Model.OrderHeader.OrderDate.ToString("yyyy-MM-dd HH:mm")" />
+
+                                                             </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Fraktföretag</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
-                                </div>
+              @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
+
+                                        <input asp-for="OrderHeader.Carrier" type="text" class="form-control" />
+                                     
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.Carrier" type="text" class="form-control" />
+                                    }                                </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-4">Spårning</div>
+                                <div class="col-4">Spårnings-ID</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
+                                                  @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                                    {
+
+                                        <input asp-for="OrderHeader.TrackingNumber" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.TrackingNumber" type="text" class="form-control" />
+                                    }
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Leveransdatum</div>
                                 <div class="col-8">
-                                    <input type="text" readonly class="form-control" />
+                                 <input readonly value="@Model.OrderHeader.ShippingDate.ToString("yyyy-MM-dd HH:mm")" type="text" class="form-control" />
                                 </div>
                             </div>
+                                                       @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)){
 
                             <div class="row my-1">
                                 <div class="col-4">Session-ID</div>
                                 <div class="col-8">
-                                    <input type="text" readonly class="form-control" />
+                                  
+                                        <input readonly asp-for="OrderHeader.SessionId" type="text" class="form-control" />
+                                    
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-4">Betalnings-ID</div>
                                 <div class="col-8">
-                                    <input type="text" readonly class="form-control" />
+                                  
+                                        <input readonly asp-for="OrderHeader.PaymentIntentId" type="text" class="form-control" />
                                 </div>
                             </div>
-
+                            }
                             <div class="row my-1">
-
+                                @if(Model.OrderHeader.SessionId==null){
                                 <div class="col-4">Förfallodatum</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
 
-                            <div class="row my-1">
+                                        <input readonly value="@Model.OrderHeader.PaymentDueDate.ToString("yyyy-MM-dd")" type="text" class="form-control" />
+                                   
+                                </div>
+                                } else {
+
+
+
                                 <div class="col-4 fs-6">Betalningsdatum</div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" />
-                                </div>
+
+                                        <input readonly value="@Model.OrderHeader.PaymentDate.ToString("yyyy-MM-dd HH:mm")" type="text" class="form-control" />
+                                   
+                                </div>    
+                                }                       
                             </div>
                             <div class="row my-1">
                                 <div class="col-4 fs-6">Betalningsstatus</div>
                                 <div class="col-8">
-                                    <input type="text" readonly class="form-control" />
+                                    <input asp-for="OrderHeader.PaymentStatus" readonly class="form-control" />
                                 </div>
                             </div>
-                            <input type="submit" class="btn btn-warning form-control my-1" value="Uppdatera Orderdetaljer" />
+                            <input type="submit" class="btn btn-warning form-control my-1"
+                                value="Uppdatera Orderdetaljer" />
 
                         </div>
                         <div class="col-12 col-lg-5 offset-lg-1">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-primary">Ordersammanfattning</span>
                             </h4>
-                            <label class="btn btn-outline-primary form-control my-2">Orderstatus - XXOrderStatusXX</label>
+                            <label class="btn btn-outline-primary form-control my-2">Orderstatus -
+                                XXOrderStatusXX</label>
 
                             <ul class="list-group mb-3">
 
@@ -166,8 +249,10 @@
                                 </li>
                             </ul>
                             <input type="submit" class="btn btn-success form-control my-1" value="Betala Nu" />
-                            <input type="submit" class="btn btn-primary my-gradient-btn form-control my-1" value="Påbörja Bearbetning" />
-                            <input type="submit" class="btn my-gradient-btn btn-primary form-control my-1" value="Skicka Order" />
+                            <input type="submit" class="btn btn-primary my-gradient-btn form-control my-1"
+                                value="Påbörja Bearbetning" />
+                            <input type="submit" class="btn my-gradient-btn btn-primary form-control my-1"
+                                value="Skicka Order" />
                             <input type="submit" class="btn btn-danger form-control my-1" value="Avbryt Order" />
                         </div>
                     </div>
