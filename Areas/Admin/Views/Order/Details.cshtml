@@ -140,12 +140,12 @@
               @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
                                     {
 
-                                        <input asp-for="OrderHeader.Carrier" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.Carrier" type="text" id="carrier" class="form-control" />
                                      
                                     }
                                     else
                                     {
-                                        <input readonly asp-for="OrderHeader.Carrier" type="text" class="form-control" />
+                                        <input readonly asp-for="OrderHeader.Carrier" id="carrier" type="text" class="form-control" />
                                     }                                </div>
                             </div>
                             <div class="row my-1">
@@ -154,7 +154,7 @@
                                                   @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
                                     {
 
-                                        <input asp-for="OrderHeader.TrackingNumber" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.TrackingNumber" id="trackingNumber" type="text" class="form-control" />
                                     }
                                     else
                                     {
@@ -214,8 +214,7 @@
                             </div>
                                      @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
                                     {
-                            <input type="submit" class="btn btn-warning form-control my-1" asp-action="UpdateOrderDetails"
-                                value="Uppdatera Orderdetaljer" />
+                            <button type="submit" class="btn btn-warning form-control my-1" asp-action="UpdateOrderDetails">Uppdatera Orderdetaljer</button>
                                 }
 
                         </div>
@@ -242,7 +241,7 @@
                                     </div>
                                 </li>
                                     }
-                                <li class="list-group-item bg-primary">
+                                <li class="list-group-item bg-primary pt-3">
                                     <div class="row container">
                                         <div class="col-6">
                                             <h5 class="text-white">Totalt</h5>
@@ -253,12 +252,26 @@
                                     </div>
                                 </li>
                             </ul>
-                            <input type="submit" class="btn btn-success form-control my-1" value="Betala Nu" />
-                            <input type="submit" class="btn btn-primary my-gradient-btn form-control my-1"
-                                value="Påbörja Bearbetning" />
-                            <input type="submit" class="btn my-gradient-btn btn-primary form-control my-1"
-                                value="Skicka Order" />
-                            <input type="submit" class="btn btn-danger form-control my-1" value="Avbryt Order" />
+                            @if(Model.OrderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment && Model.OrderHeader.OrderStatus == SD.StatusShipped){
+                            <button type="submit" class="btn btn-success form-control my-1">Betala Nu</button>
+                            }
+
+                            @if(User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)){
+
+                            @if(Model.OrderHeader.OrderStatus == SD.StatusApproved) {
+                            <button type="submit" asp-action="StartProcessing" class="btn btn-primary my-gradient-btn form-control my-1"
+                            > Påbörja Bearbetning</button>
+                            }
+                            @if(Model.OrderHeader.OrderStatus == SD.StatusInProcess) {
+
+                            <button type="submit" asp-action="ShipOrder" onClick="return validateInput()" class="btn my-gradient-btn btn-primary form-control my-1"
+                            >Skicka Order</button>
+                            }
+                            @if(Model.OrderHeader.OrderStatus != SD.StatusRefunded && Model.OrderHeader.OrderStatus != SD.StatusCancelled && Model.OrderHeader.OrderStatus != SD.StatusShipped) {
+                            <button type="submit" asp-action="CancelOrder" class="btn btn-danger form-control my-1">Avbryt Order</button>
+                            }
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -266,3 +279,28 @@
         </div>
     </div>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function validateInput(){
+            if(document.getElementById("carrier").value=="") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hoppsan...',
+                    text: 'Vänligen fyll i Fraktföretag!'
+                });
+                return false;
+            }
+            if(document.getElementById("trackingNumber").value=="") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hoppsan...',
+                    text: 'Vänligen fyll i Spårnings-ID!'
+                });
+                return false;
+            } 
+            return true;
+        }
+    </script>
+}
