@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Projekt.Models;
 using Projekt.Repository;
 using Projekt.Repository.IRepository;
+using Projekt.Utility;
 
 namespace Projekt.Areas.Customer.Controllers
 {
@@ -60,15 +61,22 @@ namespace Projekt.Areas.Customer.Controllers
                 // Ändra befintlig kundvagn om den finns
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
+            _unitOfWork.Save();
+
             }
             else
             {
                 // Lägg till ny kundvagnspost om ingen befintlig kundvagn hittades
                 _unitOfWork.ShoppingCart.Add(newShoppingCart);
+            _unitOfWork.Save();
+
+
+                //Räknar hur många varor som finns i kundvagnen
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(
+                u => u.ApplicationUserId == userId).Count());
             }
 
-            // Spara ändringar i databasen
-            _unitOfWork.Save();
+
 
             TempData["success"] = "Kundvagnen uppdaterades.";
             return RedirectToAction(nameof(Index));

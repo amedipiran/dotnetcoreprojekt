@@ -27,7 +27,7 @@ namespace Projekt.Utility
         public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
         public const string PaymentStatusRejected = "Avvisad";
 
-
+        public const string SessionCart = "SessionShoppingCart"; 
 
     }
 }
