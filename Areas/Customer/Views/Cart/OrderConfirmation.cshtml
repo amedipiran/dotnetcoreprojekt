@@ -1,9 +1,15 @@
 @model int
-
+<div class="col-6 col-md-3">
+                  <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary border form-control" >Tillbaka till produkter</a>
+            </div>
 <div class="row container pt-4">
     <div class="col-12 text-center">
         <h1 class="text-primary text-center">Din beställning är mottagen.</h1>
         Beställnings-ID: @Model <br><br>
-        
+    
     </div>
+
+    
+    <a asp-area="admin" asp-controller="order" asp-action="index" class="btn btn-primary my-gradient-btn">Se beställningar</a>
+
 </div>

@@ -1,0 +1,10 @@
+@model int
+
+<div class="row container pt-4">
+    <div class="col-12 text-center">
+        <h1 class="text-primary text-center">Tack för din betalning.</h1>
+        Beställnings-ID: @Model <br><br>
+    </div>
+    <p>Din betalning är mottagen.</p>
+    <a asp-area="admin" asp-controller="order" asp-action="Details" asp-route-orderId="@Model" class="btn btn-primary my-gradient-btn">Tillbaka till ordersammanfattning</a>
+</div>

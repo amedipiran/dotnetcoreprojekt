@@ -28,8 +28,8 @@
                       <li class="nav-item">
                         <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-card-list"></i> Beställningar</a>
                     </li>
-                    @*@if(User.IsInRole(SD.Role_Admin)) {
-                    *@
+                    @if(User.IsInRole(SD.Role_Admin)) {
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-pen"></i>
                             Innehållshantering
@@ -40,8 +40,8 @@
                             <li><a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Företag</a></li>
                         </ul>
                     </li>
-                    @*
-                    }*@
+                    
+                    }
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index"><i class="bi bi-cart-fill"></i> &nbsp; Kundvagn (0)</a>
                     </li>
