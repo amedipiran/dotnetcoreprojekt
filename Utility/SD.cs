@@ -13,6 +13,7 @@ namespace Projekt.Utility
         public const string Role_Company = "Företag";
         public const string Role_Admin = "Admin";
         public const string Role_Employee = "Anställd";
+        public const string Roles_Admin_Employee = Role_Admin + "," + Role_Employee;
 
         public const string StatusPending = "Väntande";
         public const string StatusApproved = "Godkänd";
