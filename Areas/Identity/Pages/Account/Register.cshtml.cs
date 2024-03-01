@@ -129,22 +129,26 @@ namespace Projekt.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if(!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult()) {
+            if (!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+            {
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Company)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
 
-            } 
+            }
 
-            Input = new() {
-                RoleList = _roleManager.Roles.Select(x=>x.Name).Select(i=> new SelectListItem {
-                    Text =i,
-                    Value=i 
+            Input = new()
+            {
+                RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
+                {
+                    Text = i,
+                    Value = i
                 }),
-                  CompanyList = _unitOfWork.Company.GetAll().Select(i=> new SelectListItem {
-                    Text =i.Name,
-                    Value=i.Id.ToString() 
+                CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
                 })
             };
             ReturnUrl = returnUrl;
@@ -168,7 +172,8 @@ namespace Projekt.Areas.Identity.Pages.Account
                 user.PostalCode = Input.PostalCode;
                 user.PhoneNumber = Input.PhoneNumber;
 
-                if(Input.Role ==SD.Role_Company) {
+                if (Input.Role == SD.Role_Company)
+                {
                     user.CompanyId = Input.CompanyId;
                 }
 
@@ -179,9 +184,12 @@ namespace Projekt.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
 
-                    if(!String.IsNullOrEmpty(Input.Role)){
+                    if (!String.IsNullOrEmpty(Input.Role))
+                    {
                         await _userManager.AddToRoleAsync(user, Input.Role);
-                    } else {
+                    }
+                    else
+                    {
                         await _userManager.AddToRoleAsync(user, SD.Role_Customer);
 
                     }
@@ -204,7 +212,15 @@ namespace Projekt.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole(SD.Role_Admin))
+                        {
+                            TempData["success"] = "Ny användare skapad.";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
+
                         return LocalRedirect(returnUrl);
                     }
                 }

@@ -1,7 +1,13 @@
 ﻿@page
 @model RegisterModel
 @{
+    if(User.IsInRole(SD.Role_Admin)){
+    ViewData["Title"] = "Skapa användare";
+
+    } else {
     ViewData["Title"] = "Registrera";
+
+    }
 }
 
 
@@ -74,12 +80,13 @@
                 <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
             </div>
 
+                @if(User.IsInRole(SD.Role_Admin)) {
                   <div class="form-floating mb-3 col-md-6">
                     <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
                         <option disabled selected>Välj roll</option>
                     </select>
             </div>
-
+}
                          <div class="form-floating mb-3 col-md-6">
                     <select style="display: none;" asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" class="form-select">
                         <option disabled selected>Välj Företag</option>
@@ -91,6 +98,8 @@
           
         </form>
     </div>
+    @if(!User.IsInRole(SD.Role_Admin)) {
+
     <div class="col-md-12 p-3 text-center">
         <section>
             <p class="divider-text d-flex">Eller</p>
@@ -121,6 +130,8 @@
             }
         </section>
     </div>
+    }
+
 </div>
 
     </div>
