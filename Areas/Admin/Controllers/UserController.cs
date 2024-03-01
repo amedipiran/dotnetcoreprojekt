@@ -40,11 +40,20 @@ namespace Projekt.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<ApplicationUser> objUserList = _db.ApplicationUsers.Include(u=>u.Company).ToList();
-            foreach(var user in objUserList) {
-                if(user.Company == null) {
-                    user.Company = new() {
-                        Name =""
+            List<ApplicationUser> objUserList = _db.ApplicationUsers.Include(u => u.Company).ToList();
+            var userRoles = _db.UserRoles.ToList();
+            var roles = _db.Roles.ToList();
+
+            foreach (var user in objUserList)
+            {
+                var roleId = userRoles.FirstOrDefault(u => u.UserId == user.Id).RoleId;
+                user.Role = roles.FirstOrDefault(u => u.Id == roleId).Name;
+
+                if (user.Company == null)
+                {
+                    user.Company = new()
+                    {
+                        Name = ""
                     };
                 }
             }
@@ -57,7 +66,7 @@ namespace Projekt.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-           
+
 
             return Json(new { success = true, message = "Raderingen lyckades." });
         }
