@@ -15,13 +15,31 @@ function loadDataTable() {
              { "data": "role", "width": "10%" },
 
 
-             { "data": "id",
+             { "data": {id: "id", lockoutEnd: "lockoutEnd"},
                 "render": function(data){
-                    return `<div class="w-75 btn-group">
-                    <a href="/admin/company/upsert?id=${data}" class="btn btn-primary btn-sm my-1 mx-md-1 my-gradient-btn">
-                    <i class="bi bi-pencil-square"> </i> Ändra
-                    </a>
+                    let today = new Date().getTime();
+                    var lockout = new Date(data.lockoutEnd).getTime();
+
+                    if(lockout > today) {
+                        return `<div class="text-center">
+                        <a onClick=LockUnlock('${data.id}') class="btn btn-danger fs-6 mb-2 text-white" style="cursor:pointer; width:150px;">
+                        <i class="bi bi-lock-fill"></i>Lås</a>
+
+                            <a class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
+                            <i class="bi bi-pencil-square"></i>Behörighet</a>
+                        </div>`
+                    } else {
+                        return `<div class="text-center">
+                        <a onClick=LockUnlock('${data.id}') class="btn btn-success fs-6 mb-2 text-white" style="cursor:pointer; width:150px;">
+                        <i class="bi bi-unlock-fill"></i>Lås upp</a>
+
+                        <a class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
+                        <i class="bi bi-pencil-square"></i>Behörighet</a>
                     </div>`
+                    }
+
+
+               
                 }, 
               "width": "35%" }
 
@@ -30,3 +48,17 @@ function loadDataTable() {
  }
  
 
+
+
+ function LockUnlock(id) {
+    $.ajax({
+        type: "POST",
+        url: "/Admin/User/LockUnlock",
+        data: JSON.stringify(id),
+        contentType: "application/json",
+        success: function (data) {
+            toastr.success(data.message);
+            dataTable.ajax.reload();
+        }
+    })
+ }

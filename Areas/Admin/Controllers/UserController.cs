@@ -9,6 +9,7 @@ using Projekt.Repository.IRepository;
 using Projekt.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Common;
 
 
 
@@ -63,12 +64,24 @@ namespace Projekt.Areas.Admin.Controllers
 
         }
 
-        [HttpDelete]
-        public IActionResult Delete(int? id)
+        [HttpPost]
+        public IActionResult LockUnlock([FromBody] string id)
         {
+            var objFromDb = _db.ApplicationUsers.FirstOrDefault(u => u.Id == id);
+            if (objFromDb == null)
+            {
+                return Json(new { success = false, message = "Gick inte att låsa/låsa upp" });
+            }
 
+            if(objFromDb.LockoutEnd != null && objFromDb.LockoutEnd> DateTime.Now) {
+                objFromDb.LockoutEnd = DateTime.Now;
+            } else {
+                objFromDb.LockoutEnd = DateTime.Now.AddYears(1000);
+            }
 
-            return Json(new { success = true, message = "Raderingen lyckades." });
+            _db.SaveChanges();
+
+            return Json(new { success = true, message = "Operationen lyckades." });
         }
 
         #endregion
