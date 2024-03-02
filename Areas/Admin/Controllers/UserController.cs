@@ -10,6 +10,7 @@ using Projekt.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
+using Microsoft.AspNetCore.Identity;
 
 
 
@@ -22,10 +23,11 @@ namespace Projekt.Areas.Admin.Controllers
     {
 
         private readonly ApplicationDbContext _db;
-
-        public UserController(ApplicationDbContext db)
+        private readonly UserManager<IdentityUser> _userManager;
+        public UserController(ApplicationDbContext db, UserManager<IdentityUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
 
         }
         public IActionResult Index()
@@ -34,25 +36,52 @@ namespace Projekt.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult RoleManagement(string userId){
-            string RoleID = _db.UserRoles.FirstOrDefault(u=>u.UserId == userId).RoleId;
+        public IActionResult RoleManagement(string userId)
+        {
+            string RoleID = _db.UserRoles.FirstOrDefault(u => u.UserId == userId).RoleId;
 
-            RoleManageMentVM  RoleVM = new RoleManageMentVM(){
-                ApplicationUser = _db.ApplicationUsers.Include(u=>u.Company).FirstOrDefault(u=>u.Id == userId),
-                RoleList = _db.Roles.Select(i=> new SelectListItem {
+            RoleManageMentVM RoleVM = new RoleManageMentVM()
+            {
+                ApplicationUser = _db.ApplicationUsers.Include(u => u.Company).FirstOrDefault(u => u.Id == userId),
+                RoleList = _db.Roles.Select(i => new SelectListItem
+                {
                     Text = i.Name,
                     Value = i.Name
                 }),
-                  CompanyList = _db.Companies.Select(i=> new SelectListItem {
+                CompanyList = _db.Companies.Select(i => new SelectListItem
+                {
                     Text = i.Name,
                     Value = i.Id.ToString()
                 }),
             };
 
-            RoleVM.ApplicationUser.Role = _db.Roles.FirstOrDefault(u=>u.Id == RoleID).Name;
+            RoleVM.ApplicationUser.Role = _db.Roles.FirstOrDefault(u => u.Id == RoleID).Name;
             return View(RoleVM);
-        } 
+        }
 
+
+        [HttpPost]
+        public IActionResult RoleManagement(RoleManageMentVM roleManageMentVM)
+        {
+            string RoleID = _db.UserRoles.FirstOrDefault(u => u.UserId == roleManageMentVM.ApplicationUser.Id).RoleId;
+            string oldRole = _db.Roles.FirstOrDefault(u => u.Id == RoleID).Name;
+
+            if(!(roleManageMentVM.ApplicationUser.Role == oldRole)) {
+                ApplicationUser applicationUser = _db.ApplicationUsers.FirstOrDefault(u=>u.Id == roleManageMentVM.ApplicationUser.Id);
+                if(roleManageMentVM.ApplicationUser.Role==SD.Role_Company) {
+                    applicationUser.CompanyId = roleManageMentVM.ApplicationUser.CompanyId;
+                }
+                if(oldRole == SD.Role_Company) {
+                    applicationUser.CompanyId = null;
+                }
+                _db.SaveChanges();
+                _userManager.RemoveFromRoleAsync(applicationUser, oldRole).GetAwaiter().GetResult();
+                _userManager.AddToRoleAsync(applicationUser, roleManageMentVM.ApplicationUser.Role).GetAwaiter().GetResult();
+
+            }
+
+            return RedirectToAction("Index");
+        }
         //API för att skicka data till Cloudtables
         #region API CALLS
         [HttpGet]
@@ -90,9 +119,12 @@ namespace Projekt.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Gick inte att låsa/låsa upp" });
             }
 
-            if(objFromDb.LockoutEnd != null && objFromDb.LockoutEnd> DateTime.Now) {
+            if (objFromDb.LockoutEnd != null && objFromDb.LockoutEnd > DateTime.Now)
+            {
                 objFromDb.LockoutEnd = DateTime.Now;
-            } else {
+            }
+            else
+            {
                 objFromDb.LockoutEnd = DateTime.Now.AddYears(1000);
             }
 
