@@ -2,7 +2,7 @@
 
 <form method="post" enctype="multipart/form-data">
 <input asp-for="Product.Id" hidden>
-@* <input asp-for="Product.ImageUrl" hidden> *@
+
 
 
 <div class="row">
@@ -71,8 +71,8 @@
         </div>
 
                <div class="mb-3 row p-1">
-             @* <label asp-for="Product.ImageUrl"  *@class="p-0">Välj bild:</label>
-            <input type="file" name="file" class="form-control">
+             <label asp-for="Product.ProductImages" class="p-0">Välj bild:</label>
+            <input type="file" name="files" class="form-control" multiple>
         </div>
 
         <div class="row">

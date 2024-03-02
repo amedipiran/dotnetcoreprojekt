@@ -59,57 +59,81 @@ namespace Projekt.Areas.Admin.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
+public IActionResult Upsert(ProductVM productVM, List<IFormFile>? files)
+{
+    if (ModelState.IsValid)
+    {
+        bool isNewProduct = productVM.Product.Id == 0;
+
+        if (isNewProduct)
         {
-            if (ModelState.IsValid)
-            {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                bool isNewProduct = productVM.Product.Id == 0;
-                string message = isNewProduct ? "Produkt skapad." : "Produkt uppdaterad.";
-
-                if (file != null)
-                {
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, @"images/product");
-
-                 /*    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
-                    {
-                        var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('/'));
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
-                    }
-
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStream);
-                    }
-                    productVM.Product.ImageUrl = @"/images/product/" + fileName; */
-                } 
-
-                if (isNewProduct)
-                {
-                    _unitOfWork.Product.Add(productVM.Product);
-                }
-                else
-                {
-                    _unitOfWork.Product.Update(productVM.Product);
-                }
-                _unitOfWork.Save();
-                TempData["Success"] = message;
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                });
-                return View(productVM);
-            }
+            _unitOfWork.Product.Add(productVM.Product);
         }
+        else
+        {
+            _unitOfWork.Product.Update(productVM.Product);
+        }
+        _unitOfWork.Save();
+
+        string wwwRootPath = _webHostEnvironment.WebRootPath;
+
+        if (files != null && files.Count > 0)
+        {
+            // Skapa en mapp för produkten om den inte redan finns
+            string productPath = @"images/products/product-" + productVM.Product.Id;
+            string finalPath = Path.Combine(wwwRootPath, productPath);
+            if (!Directory.Exists(finalPath))
+            {
+                Directory.CreateDirectory(finalPath);
+            }
+
+            foreach (IFormFile file in files)
+            {
+                // Generera en unik filnamn för att undvika namnkonflikter
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                
+                // Kopiera filen till den slutgiltiga sökvägen
+                string fullPath = Path.Combine(finalPath, fileName);
+                using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                // Skapa en ny ProductImage och lägg till den i databasen
+                ProductImage productImage = new ProductImage
+                {
+                    ImageUrl = @"/" + Path.Combine(productPath, fileName).Replace(@"\", "/"),
+                    ProductId = productVM.Product.Id
+                };
+
+                // Lägg till ProductImage till Product om det är nödvändigt
+                if (productVM.Product.ProductImages == null)
+                {
+                    productVM.Product.ProductImages = new List<ProductImage>();
+                }
+                productVM.Product.ProductImages.Add(productImage);
+            }
+            
+            // Uppdatera produkten för att inkludera bilderna
+            _unitOfWork.Product.Update(productVM.Product);
+            _unitOfWork.Save();
+        }
+
+        TempData["Success"] = isNewProduct ? "Produkt skapad." : "Produkt uppdaterad.";
+        return RedirectToAction("Index");
+    }
+    else
+    {
+        // Om ModelState inte är giltig, ladda om kategorilistan för vyn
+        productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.Id.ToString()
+        });
+        return View(productVM);
+    }
+}
+
 
 
         //API för att skicka data till Cloudtables
