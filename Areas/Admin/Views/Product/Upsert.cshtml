@@ -2,7 +2,7 @@
 
 <form method="post" enctype="multipart/form-data">
 <input asp-for="Product.Id" hidden>
-<input asp-for="Product.ImageUrl" hidden>
+@* <input asp-for="Product.ImageUrl" hidden> *@
 
 
 <div class="row">
@@ -17,7 +17,7 @@
             <hr>
         </div>
          <div class="my-5 w-25">
-      <img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px; border:1px solid gray;">
+@*       <img src="@Model.Product.ImageUrl" width="100%"  *@style="border-radius:5px; border:1px solid gray;">
     </div>
         <div asp-validation-summary="ModelOnly"></div>
         <div class="mb-3 row p-1">
@@ -71,7 +71,7 @@
         </div>
 
                <div class="mb-3 row p-1">
-             <label asp-for="Product.ImageUrl" class="p-0">Välj bild:</label>
+             @* <label asp-for="Product.ImageUrl"  *@class="p-0">Välj bild:</label>
             <input type="file" name="file" class="form-control">
         </div>
 

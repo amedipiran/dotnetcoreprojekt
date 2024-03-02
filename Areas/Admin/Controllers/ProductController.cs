@@ -72,7 +72,7 @@ namespace Projekt.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(wwwRootPath, @"images/product");
 
-                    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                 /*    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                     {
                         var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('/'));
                         if (System.IO.File.Exists(oldImagePath))
@@ -85,8 +85,8 @@ namespace Projekt.Areas.Admin.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    productVM.Product.ImageUrl = @"/images/product/" + fileName;
-                }
+                    productVM.Product.ImageUrl = @"/images/product/" + fileName; */
+                } 
 
                 if (isNewProduct)
                 {
@@ -134,7 +134,7 @@ namespace Projekt.Areas.Admin.Controllers
             }
 
             // Kontrollera att ImageUrl inte är null eller tom innan man försöker radera bilden
-            if (!string.IsNullOrEmpty(productToDelete.ImageUrl))
+            /* if (!string.IsNullOrEmpty(productToDelete.ImageUrl))
             {
                 // Konstruera sökvägen och kontrollera att filen finns innan man försöker radera den
                 var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageUrl.TrimStart('/'));
@@ -142,7 +142,7 @@ namespace Projekt.Areas.Admin.Controllers
                 {
                     System.IO.File.Delete(oldImagePath);
                 }
-            }
+            } */
 
             _unitOfWork.Product.Remove(productToDelete);
             _unitOfWork.Save();

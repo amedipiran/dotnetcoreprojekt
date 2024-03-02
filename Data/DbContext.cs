@@ -51,7 +51,6 @@ namespace Projekt.Data
        Price50 = 80,
        Price100 = 70,
        CategoryId = 1,
-       ImageUrl = ""
    },
   new Product
   {
@@ -64,7 +63,7 @@ namespace Projekt.Data
       Price50 = 90,
       Price100 = 80,
       CategoryId = 1,
-      ImageUrl = ""
+
   },
   new Product
   {
@@ -77,7 +76,7 @@ namespace Projekt.Data
       Price50 = 100,
       Price100 = 90,
       CategoryId = 1,
-      ImageUrl = ""
+
   },
   new Product
   {
@@ -90,7 +89,7 @@ namespace Projekt.Data
       Price50 = 110,
       Price100 = 100,
       CategoryId = 1,
-      ImageUrl = ""
+
   },
   new Product
   {
@@ -103,7 +102,7 @@ namespace Projekt.Data
       Price50 = 120,
       Price100 = 110,
       CategoryId = 1,
-      ImageUrl = ""
+
   },
   new Product
   {
@@ -116,7 +115,7 @@ namespace Projekt.Data
       Price50 = 130,
       Price100 = 120,
       CategoryId = 1,
-      ImageUrl = ""
+
 
 
   });
