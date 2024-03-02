@@ -180,7 +180,16 @@ namespace Projekt.Areas.Admin.Controllers
             }
 
             // Kontrollera att ImageUrl inte är null eller tom innan man försöker radera bilden
-
+                    string productPath = @"images/products/product-" + id;
+                    string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath);
+                    if (Directory.Exists(finalPath))
+                    {
+                        string[] filePaths = Directory.GetFiles(finalPath);
+                        foreach(string filePath in filePaths) {
+                            System.IO.File.Delete(filePath);
+                        }
+                        Directory.Delete(finalPath);
+                    }
 
             _unitOfWork.Product.Remove(productToDelete);
             _unitOfWork.Save();
