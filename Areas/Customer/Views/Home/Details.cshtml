@@ -2,7 +2,7 @@
 
 <form method="post">
     <input hidden asp-for="ProductId">
-    <div class="card shadow border-0 mt-4">
+    <div class="card shadow border-0 mt-4 p-5">
         <div class="card-header bg-secondary text-light py-4">
             <h3 class="text-center text-uppercase text-dark">@Model.Product.Title</h3>
             <p class="text-warning text-center fw-semibold mb-0">av @Model.Product.Author</p>
@@ -13,7 +13,30 @@
             </div>
             <div class="row g-3 align-items-center">
                 <div class="col-12 col-lg-4 text-center">
-                   @*  <img src="@Model.Product.ImageUrl" class="img-fluid rounded" alt="Produktbild"> *@
+                   
+@if (Model.Product.ProductImages != null && Model.Product.ProductImages.Count > 0) {
+
+    <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach (var imageWithIndex in Model.Product.ProductImages.Select((image, index) => new { Image = image, Index = index })) {
+                <div class="@(imageWithIndex.Index == 0 ? "carousel-item active" : "carousel-item")">
+                    <img src="@imageWithIndex.Image.ImageUrl" class="d-block w-100" style="height: 100%; object-fit: cover;" alt="Slide @imageWithIndex.Index">
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+}
+
+
+
                 </div>
                 <div class="col-12 col-lg-8">
                     <div class="mb-3">

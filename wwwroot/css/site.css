@@ -55,3 +55,12 @@ border: 1px solid black;
   margin: auto 0.25rem;
   box-shadow: 0 -2px;
 }
+
+#carouselExampleIndicators .carousel-inner {
+  height: 500px; /* Ange önskad höjd här */
+}
+
+#carouselExampleIndicators .carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
