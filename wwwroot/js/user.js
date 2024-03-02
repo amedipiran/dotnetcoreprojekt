@@ -25,7 +25,7 @@ function loadDataTable() {
                         <a onClick=LockUnlock('${data.id}') class="btn btn-danger fs-6 mb-2 text-white" style="cursor:pointer; width:150px;">
                         <i class="bi bi-lock-fill"></i>Lås</a>
 
-                            <a class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
+                            <a href="/admin/user/RoleManagement?userId=${data.id}" class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
                             <i class="bi bi-pencil-square"></i>Behörighet</a>
                         </div>`
                     } else {
@@ -33,7 +33,7 @@ function loadDataTable() {
                         <a onClick=LockUnlock('${data.id}') class="btn btn-success fs-6 mb-2 text-white" style="cursor:pointer; width:150px;">
                         <i class="bi bi-unlock-fill"></i>Lås upp</a>
 
-                        <a class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
+                        <a href="/admin/user/RoleManagement?userId=${data.id}" class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
                         <i class="bi bi-pencil-square"></i>Behörighet</a>
                     </div>`
                     }
