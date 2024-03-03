@@ -63,8 +63,7 @@ border: 1px solid black;
 
 #carouselExampleIndicators .carousel-item img {
   height: 100%;
-  display: grid;
-  place-content: center;
+  
 }
 
 #carouselExampleIndicators .carousel-item, .active {
