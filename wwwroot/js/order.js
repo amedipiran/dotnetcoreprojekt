@@ -42,7 +42,7 @@ function loadDataTable(status) {
                 "render": function(data){
                     return `<div class="w-75 btn-group">
                     <a href="/admin/order/details?orderId=${data}" class="btn btn-primary btn-sm my-1 mx-md-1 my-gradient-btn">
-                    <i class="bi bi-pencil-square"> </i>
+                    <em class="bi bi-pencil-square"> </em>
                     </a>
                     </div>`
                 }, 

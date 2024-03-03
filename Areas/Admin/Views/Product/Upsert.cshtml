@@ -22,7 +22,7 @@
             @foreach(var image in Model.Product.ProductImages) {
                 <div class="p-1 w-25 d-flex flex-column">
                     <img src="@image.ImageUrl" width="100%" style="border-radius:5px; border:1px solid gray;">
-                    <a asp-action="RemoveImage" class="btn btn-danger mt-1" style="border-radius:5px;" asp-route-imageId="@image.Id"> <i class="bi bi-trash-fill fs-6"></i> Ta bort</a>
+                    <a asp-action="RemoveImage" class="btn btn-danger mt-1" style="border-radius:5px;" asp-route-imageId="@image.Id"> <em class="bi bi-trash-fill fs-6"></em> Ta bort</a>
                 </div>
             }
         </div>

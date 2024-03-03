@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - Projekt</title>
-    <link rel="stylesheet" href="~/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
       <link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="~/Projekt.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Projekt.styles.css" asp-append-version="true">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <body>
@@ -26,15 +26,15 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> Hem</a>
+                        <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index"><em class="bi bi-house"></em> Hem</a>
                     </li>
                       <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-card-list"></i> Beställningar</a>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index"><em class="bi bi-card-list"></em> Beställningar</a>
                 </li>
                     @if(User.IsInRole(SD.Role_Admin)) {
                     
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-pen"></i>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <em class="bi bi-pen"></em>
                             Innehåll
                         </a>
                         <ul class="dropdown-menu">

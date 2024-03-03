@@ -23,18 +23,18 @@ function loadDataTable() {
                     if(lockout > today) {
                         return `<div class="text-center">
                         <a onClick=LockUnlock('${data.id}') class="btn btn-danger fs-6 mb-2 text-white" style="cursor:pointer; width:150px;">
-                        <i class="bi bi-lock-fill"></i>Lås</a>
+                        <em class="bi bi-lock-fill"></em>Lås</a>
 
                             <a href="/admin/user/RoleManagement?userId=${data.id}" class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
-                            <i class="bi bi-pencil-square"></i>Behörighet</a>
+                            <em class="bi bi-pencil-square"></em>Behörighet</a>
                         </div>`
                     } else {
                         return `<div class="text-center">
                         <a onClick=LockUnlock('${data.id}') class="btn btn-success fs-6 mb-2 text-white" style="cursor:pointer; width:150px;">
-                        <i class="bi bi-unlock-fill"></i>Lås upp</a>
+                        <em class="bi bi-unlock-fill"></em>Lås upp</a>
 
                         <a href="/admin/user/RoleManagement?userId=${data.id}" class="btn btn-danger fs-6  text-white" style="cursor:pointer; width:150px;">
-                        <i class="bi bi-pencil-square"></i>Behörighet</a>
+                        <em class="bi bi-pencil-square"></em>Behörighet</a>
                     </div>`
                     }
 
