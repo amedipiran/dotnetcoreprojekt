@@ -57,10 +57,18 @@ border: 1px solid black;
 }
 
 #carouselExampleIndicators .carousel-inner {
-  height: 500px; /* Ange önskad höjd här */
+  height: 500px; 
+
 }
 
 #carouselExampleIndicators .carousel-item img {
   height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+#carouselExampleIndicators .carousel-item, .active {
+  height: 100%;
   object-fit: cover;
+  padding: 10px;
 }
